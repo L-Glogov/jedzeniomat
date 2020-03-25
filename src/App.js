@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './containers/Layout/Layout';
 import Fridge from './components/Fridge/Fridge';
+import Recipes from './components/Recipes/Recipes';
 
 class App extends Component {
   state = {
@@ -36,7 +37,7 @@ class App extends Component {
         modifyAmount: 0
       },
       {
-        name: "mrożone maliny",
+        name: "maliny mrożone",
         quantity: 300,
         unit: "gram",
         modifyAmount: 0
@@ -48,8 +49,77 @@ class App extends Component {
         modifyAmount: 0
       }
     ],
+    recipes: [
+      {
+        name: "Koktajl Bananowy",
+        ingredients: [
+          {
+            name: "banan",
+            quantity: 1,
+            unit: "szt."
+          },
+          {
+            name: "płatki owsiane",
+            quantity: 50,
+            unit: "gram"
+          },
+          {
+            name: "masło orzechowe",
+            quantity: 15,
+            unit: "gram"
+          },
+          {
+            name: "ksylitol",
+            quantity: 10,
+            unit: "gram"
+          },
+          {
+            name: "mleko",
+            quantity: 250,
+            unit: "ml"
+          }
+        ],
+        portions: 1,
+        instructions: "Składniki zmiksować na gładki koktajl w blenderze. Podawać najlepiej od razu po przygotowaniu"
+      },
+      {
+        name: "Koktajl Malinowy",
+        ingredients: [
+          {
+            name: "banan",
+            quantity: 1,
+            unit: "szt."
+          },
+          {
+            name: "maliny mrożone",
+            quantity: 250,
+            unit: "gram"
+          },
+          {
+            name: "jogurt naturalny",
+            quantity: 125,
+            unit: "ml"
+          },
+          {
+            name: "ksylitol",
+            quantity: 15,
+            unit: "gram"
+          },
+          {
+            name: "mleko",
+            quantity: 500,
+            unit: "ml"
+          }
+        ],
+        portions: 2,
+        instructions: "Wszystkie składniki umieścić w kielichu blendera i zmiksować na gładki koktajl."
+      }
+    ],
+    chosenRecipe: ''
   }
   
+  // ----------Fridge Handlers--------------
+
   fridgeAddRemHandler = (amount, index) => {
     this.setState((prevState) => {
       const updatedState = {...prevState};
@@ -109,17 +179,41 @@ class App extends Component {
     
   }
 
+// ----------Recipes Handlers--------------
+
+recipesRemoveHandler = (index) => {
+  this.setState((prevState) => {
+    const updatedState = {...prevState};
+    updatedState.recipes.splice(index, 1);
+    return updatedState;
+  })
+}
+
+recipesChooseHandler = (index) => {
+  this.setState((prevState) => {
+    return {
+      chosenRecipe: prevState.recipes[index].name
+    }
+  })
+}
+
   render() {
     return (
       <div>
         <Layout>
-          <Fridge 
+          {/* <Fridge 
             supplies={this.state.fridge} 
             addRem={this.fridgeAddRemHandler}
             modify={this.fridgeModifyHandler}
             modifyAmtInput={this.fridgeModifyAmountInputHandler}
             remove={this.fridgeRemoveHandler}
             addItem={this.fridgeAddItemHandler}
+          /> */}
+          <Recipes
+            recipeList={this.state.recipes}
+            remove={this.recipesRemoveHandler}
+            recipeChoose={this.recipesChooseHandler}
+            chosenRecipe={this.state.chosenRecipe}
           />
         </Layout>
       </div>

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 const Fridge = ( props ) => {
+  
   const supplies = props.supplies.map((item, index) => {
     
     let amount;
@@ -84,9 +85,7 @@ const Fridge = ( props ) => {
             <select id="fridgeAddItemUnit">
               <option value="szt.">szt.</option>
               <option value="ml">ml</option>
-              <option value="l.">l.</option>
               <option value="gram">gram</option>
-              <option value="kg">kg</option>
             </select>
           </td>
           <td>
