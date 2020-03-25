@@ -121,7 +121,12 @@ class App extends Component {
       "szt.",
       "gram",
       "ml"
-    ]
+    ],
+    fridgeInternal: {
+      fridgeNameInput: '',
+      fridgeQuantityInput: '',
+      fridgeUnitInput: 'szt.'
+    }
   }
   
   // ----------Fridge Handlers--------------
@@ -162,12 +167,21 @@ class App extends Component {
     })
   }
 
-  fridgeAddItemHandler = () => {
-    let name = document.getElementById("fridgeAddItemName").value;
-    let quantity = document.getElementById("fridgeAddItemQuantity").value;
-    let unit = document.getElementById("fridgeAddItemUnit").value;
+  fridgeInputHandler = (e) => {
+    const name = e.target.name;
+    console.log(name);
+    const value = e.target.value;
+    this.setState((prevState) => {
+      const updatedState = {...prevState};
+      updatedState.fridgeInternal[name] = value;
+      return updatedState;
+    })
+  }
 
-    let repeatedItem = this.state.fridge.some(item => item.name.toUpperCase() === name.toUpperCase());
+  fridgeAddItemHandler = () => {
+    const name = this.state.fridgeInternal.fridgeNameInput;
+    const quantity = this.state.fridgeInternal.fridgeQuantityInput;
+    const repeatedItem = this.state.fridge.some(item => item.name.toUpperCase() === name.toUpperCase());
     if (repeatedItem) return alert("Składnik już jest na stanie");
 
     if (name !== '' && quantity !== '') {
@@ -176,7 +190,7 @@ class App extends Component {
         updatedState.fridge.push({
           name: name.toUpperCase(),
           quantity: parseInt(quantity),
-          unit: unit,
+          unit: this.state.fridgeInternal.fridgeUnitInput,
           modifyAmount: 0
         })
         return updatedState;
@@ -215,6 +229,8 @@ recipesChooseHandler = (index) => {
               modifyAmtInput={this.fridgeModifyAmountInputHandler}
               remove={this.fridgeRemoveHandler}
               addItem={this.fridgeAddItemHandler}
+              inputHandler={this.fridgeInputHandler}
+              internals={this.state.fridgeInternal}
             />
             <Recipes
               recipeList={this.state.recipes}

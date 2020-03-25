@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-// import SelectUnit from '../Auxiliary/SelectUnit';
+import SelectUnit from '../Auxiliary/SelectUnit';
 
 const Fridge = ( props ) => {
   
@@ -77,19 +77,13 @@ const Fridge = ( props ) => {
         </tr>
         <tr>
           <td>
-            <input type="text" id="fridgeAddItemName" />
+            <input type="text" name="fridgeNameInput" onChange={props.inputHandler} value={props.internals.fridgeNameInput}/>
           </td>
           <td>
-            <input type="number" id="fridgeAddItemQuantity" min={0} />
+            <input type="number" name="fridgeQuantityInput" min={0} onChange={props.inputHandler} value={props.internals.fridgeQuantityInput}/>
           </td>
           <td>
-            <select id="fridgeAddItemUnit">
-              <option value="szt.">szt.</option>
-              <option value="ml">ml</option>
-              <option value="gram">gram</option>
-            </select>
-            {/* TODO: Transform fridge into a stateful component and save the state of the select value by modifying SelectUnit and passing it an appriopriate handler which will change the local fridge state. */}
-            {/* <SelectUnit id="fridgeAddItemUnit"/> */}
+            <SelectUnit inputHandler={props.inputHandler} internals={props.internals} />
           </td>
           <td>
             <button onClick={props.addItem}>Dodaj</button>
