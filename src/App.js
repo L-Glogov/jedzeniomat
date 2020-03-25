@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from './containers/Layout/Layout';
 import Fridge from './components/Fridge/Fridge';
 import Recipes from './components/Recipes/Recipes';
+import SelectContext from './context/selectContext';
 
 class App extends Component {
   state = {
@@ -115,7 +116,12 @@ class App extends Component {
         instructions: "Wszystkie składniki umieścić w kielichu blendera i zmiksować na gładki koktajl."
       }
     ],
-    chosenRecipe: ''
+    chosenRecipe: '',
+    units: [
+      "szt.",
+      "gram",
+      "ml"
+    ]
   }
   
   // ----------Fridge Handlers--------------
@@ -200,22 +206,25 @@ recipesChooseHandler = (index) => {
   render() {
     return (
       <div>
-        <Layout>
-          {/* <Fridge 
-            supplies={this.state.fridge} 
-            addRem={this.fridgeAddRemHandler}
-            modify={this.fridgeModifyHandler}
-            modifyAmtInput={this.fridgeModifyAmountInputHandler}
-            remove={this.fridgeRemoveHandler}
-            addItem={this.fridgeAddItemHandler}
-          /> */}
-          <Recipes
-            recipeList={this.state.recipes}
-            remove={this.recipesRemoveHandler}
-            recipeChoose={this.recipesChooseHandler}
-            chosenRecipe={this.state.chosenRecipe}
-          />
-        </Layout>
+        <SelectContext.Provider value={{units: this.state.units}}>
+          <Layout>
+            <Fridge 
+              supplies={this.state.fridge} 
+              addRem={this.fridgeAddRemHandler}
+              modify={this.fridgeModifyHandler}
+              modifyAmtInput={this.fridgeModifyAmountInputHandler}
+              remove={this.fridgeRemoveHandler}
+              addItem={this.fridgeAddItemHandler}
+            />
+            <Recipes
+              recipeList={this.state.recipes}
+              remove={this.recipesRemoveHandler}
+              recipeChoose={this.recipesChooseHandler}
+              chosenRecipe={this.state.chosenRecipe}
+            />
+          </Layout>
+        </SelectContext.Provider>
+        
       </div>
     );
   }

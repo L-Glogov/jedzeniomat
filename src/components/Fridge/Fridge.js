@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+// import SelectUnit from '../Auxiliary/SelectUnit';
 
 const Fridge = ( props ) => {
   
@@ -87,6 +88,8 @@ const Fridge = ( props ) => {
               <option value="ml">ml</option>
               <option value="gram">gram</option>
             </select>
+            {/* TODO: Transform fridge into a stateful component and save the state of the select value by modifying SelectUnit and passing it an appriopriate handler which will change the local fridge state. */}
+            {/* <SelectUnit id="fridgeAddItemUnit"/> */}
           </td>
           <td>
             <button onClick={props.addItem}>Dodaj</button>

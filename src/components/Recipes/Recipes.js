@@ -1,4 +1,5 @@
 import React from 'react';
+import SelectUnit from '../Auxiliary/SelectUnit';
 
 const Recipes = ( props ) => {
 
@@ -28,7 +29,28 @@ const Recipes = ( props ) => {
     instructions = <p>{props.recipeList[recipeInd].instructions}</p>
   }
 
-
+  const addIngredientList = <table>
+      <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Ilość</th>
+          <th>Jednostka</th>
+          <th>Dodaj</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>
+          <input type="text" />
+        </td>
+        <td>
+          <input type="number" />
+        </td>
+        <td>
+          <SelectUnit />
+        </td>
+        <td> </td>
+      </tr>
+    </table>
 
   return (
     <div>
