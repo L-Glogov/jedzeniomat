@@ -45,7 +45,7 @@ const Recipes = ( props ) => {
             {recipeNames}
           </tbody>
         </table>
-        <button>Dodaj przepis</button>
+        <button onClick={props.addNew}>Dodaj przepis</button>
       </section>
       <section>
         <h3>Składniki</h3>
@@ -53,13 +53,21 @@ const Recipes = ( props ) => {
         ? <AddIngredients 
           internals={props.internals} 
           addRecipeIng={props.addRecipeIng}
-          inputHandler={props.inputHandler}   
+          inputHandler={props.inputHandler} 
+          rmvIng = {props.rmvIng}  
         />
         : <ul>{ingredientList}</ul>}
       </section>
       <section>
         <h3>Przygotowanie</h3>
-        {instructions}
+        {props.internals.addRecipeToggle  
+        ? <textarea 
+            placeholder="Tu wpisz instrukcje przygotowania." 
+            name="tempAddInst" 
+            value={props.internals.tempAddInst} 
+            onChange={props.inputHandler}
+        />
+        : instructions}
       </section>
     </div>
   )

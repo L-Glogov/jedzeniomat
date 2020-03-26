@@ -3,16 +3,19 @@ import SelectUnit from '../Auxiliary/SelectUnit';
 
 const AddIngredients = ( props ) => {
   
-  const currentIng = props.internals.tempAddIngs.map(item => {
-    return (
-      <tr key={item.name}>
-        <td>{item.name}</td>
-        <td>{item.quantity} {item.unit}</td>
-        <td>{item.unit}</td>
-        <td><button>X</button></td>
-      </tr>
-    )
-  })
+  let currentIng;
+  if (props.internals.tempAddIngs.length > 0) {
+    currentIng = props.internals.tempAddIngs.map((item, index) => {
+      return (
+        <tr key={item.name}>
+          <td>{item.name}</td>
+          <td>{item.quantity}</td>
+          <td>{item.unit}</td>
+          <td><button onClick={props.rmvIng.bind(this, index)}>X</button></td>
+        </tr>
+      )
+    })
+  }
   
   const addInputs = (
     <tr>
