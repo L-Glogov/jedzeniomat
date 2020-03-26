@@ -22,18 +22,18 @@ const AddIngredients = ( props ) => {
       <td>
         <input 
           type="text" 
-          name="addRecipeNameInput" 
+          name="addRecIngNameInput" 
           onChange={props.inputHandler} 
-          value={props.internals.addRecipeNameInput} 
+          value={props.internals.addRecIngNameInput} 
         />
       </td>
       <td>
         <input 
           type="number" 
-          name="addRecipeQuantityInput" 
-          min={0} 
+          name="addRecIngQuantityInput" 
+          min={1} 
           onChange={props.inputHandler} 
-          value={props.internals.addRecipeQuantityInput}  
+          value={props.internals.addRecIngQuantityInput}  
         />
       </td>
       <td>

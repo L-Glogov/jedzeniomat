@@ -128,12 +128,16 @@ class App extends Component {
     },
     recipesInternal: {
       addRecipeToggle: false,
+      editRecipeToggle: false,
       chosenRecipe: '',
-      addRecipeNameInput: '',
-      addRecipeQuantityInput: '',
+      addRecIngNameInput: '',
+      addRecIngQuantityInput: 1,
+      newRecipeNameInput: '',
+      newRecipePortInput: 1,
+      editName: '',
       selectUnitInput: 'szt.',
       tempAddIngs: [],
-      tempAddInst: ''
+      tempAddInst: '',
     }
   }
   
@@ -221,17 +225,18 @@ class App extends Component {
       const updatedState = {...prevState};
       updatedState.recipesInternal.addRecipeToggle = false;
       updatedState.recipesInternal.chosenRecipe = prevState.recipes[index].name;
+      updatedState.recipesInternal.editName = prevState.recipes[index].name;
       return updatedState;
     })
   }
 
   recipesAddIngHandler = () => {
-    const name = this.state.recipesInternal.addRecipeNameInput;
-    const quantity = this.state.recipesInternal.addRecipeQuantityInput;
+    const name = this.state.recipesInternal.addRecIngNameInput;
+    const quantity = this.state.recipesInternal.addRecIngQuantityInput;
     const repeatedItem = this.state.recipesInternal.tempAddIngs.some(item => item.name.toUpperCase() === name.toUpperCase());
     if (repeatedItem) return alert("Składnik już został dodany");
 
-    if (name !== '' && quantity > 0) {
+    if (name !== '') {
       this.setState((prevState) => {
         const updatedState = {...prevState};
         updatedState.recipesInternal.tempAddIngs.push({
@@ -263,12 +268,69 @@ class App extends Component {
     })
   }
 
-  recipesAdddNewToggle = () => {
+  recipesModifyHandler = (index) => {
+    this.setState(prevState => {
+      const updatedState = {...prevState};
+      updatedState.recipesInternal.addRecipeToggle = true;
+      updatedState.recipesInternal.editRecipeToggle = true;
+      updatedState.recipesInternal.chosenRecipe = '';
+      updatedState.recipesInternal.editName = prevState.recipes[index].name;
+      updatedState.recipesInternal.newRecipeNameInput = prevState.recipes[index].name;
+      updatedState.recipesInternal.newRecipePortInput = prevState.recipes[index].portions;
+      updatedState.recipesInternal.tempAddIngs = prevState.recipes[index].ingredients;
+      updatedState.recipesInternal.tempAddInst = prevState.recipes[index].instructions;
+      return updatedState;
+    })
+  }
+
+  recipesAddNewToggle = () => {
     this.setState(prevState => {
       const updatedState = {...prevState};
       updatedState.recipesInternal.addRecipeToggle = true;
       updatedState.recipesInternal.chosenRecipe = '';
+      updatedState.recipesInternal.editName = '';
+      updatedState.recipesInternal.newRecipeNameInput = '';
+      updatedState.recipesInternal.newRecipePortInput = 1;
+      updatedState.recipesInternal.tempAddIngs = [];
+      updatedState.recipesInternal.tempAddInst = '';
       return updatedState;
+    })
+  }
+
+  clearChanges = (updatedState) => {
+    updatedState.recipesInternal.addRecipeToggle = false;
+    updatedState.recipesInternal.editRecipeToggle = false;
+    updatedState.recipesInternal.addRecIngNameInput = '';
+    updatedState.recipesInternal.addRecIngQuantityInput = 1;
+    updatedState.recipesInternal.newRecipeNameInput = '';
+    updatedState.recipesInternal.newRecipePortInput = 1;
+    updatedState.recipesInternal.editName = '';
+    updatedState.recipesInternal.tempAddIngs = [];
+    updatedState.recipesInternal.tempAddInst = '';
+    return updatedState;
+  }
+
+  recipesSaveHandler = () => {
+    this.setState(prevState => {
+      const updatedState = {...prevState};
+      if (prevState.recipesInternal.editRecipeToggle) {
+        const modInd = updatedState.recipes.findIndex(item => item.name === prevState.recipesInternal.editName);
+        updatedState.recipes.splice(modInd, 1);
+      } 
+      updatedState.recipes.push({
+        name: prevState.recipesInternal.newRecipeNameInput,
+        portions: prevState.recipesInternal.newRecipePortInput,
+        ingredients: prevState.recipesInternal.tempAddIngs,
+        instructions: prevState.recipesInternal.tempAddInst
+      });
+      return this.clearChanges(updatedState);
+    })
+  }
+
+  recipesDiscardHandler = () => {
+    this.setState(prevState => {
+      const updatedState = {...prevState};
+      return this.clearChanges(updatedState); 
     })
   }
 
@@ -291,11 +353,14 @@ class App extends Component {
               recipeList={this.state.recipes}
               internals={this.state.recipesInternal}
               remove={this.recipesRemoveHandler}
+              modify={this.recipesModifyHandler}
               recipeChoose={this.recipesChooseHandler}
               addRecipeIng={this.recipesAddIngHandler}
               inputHandler={this.recipesInputHandler}
               rmvIng={this.recipesRemoveIngHandler}
-              addNew={this.recipesAdddNewToggle}
+              addNew={this.recipesAddNewToggle}
+              save={this.recipesSaveHandler}
+              discard={this.recipesDiscardHandler}
             />
           </Layout>
         </SelectContext.Provider>

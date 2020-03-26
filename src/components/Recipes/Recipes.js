@@ -8,7 +8,7 @@ const Recipes = ( props ) => {
       <tr key={item.name}>
         <td onClick={props.recipeChoose.bind(this, index)}>{item.name}</td>
         <td>
-          <button>modify symbol</button>
+          <button onClick={props.modify.bind(this, index)}>modify symbol</button>
         </td>
         <td>
           <button onClick={props.remove.bind(this, index)}>X</button>
@@ -26,13 +26,16 @@ const Recipes = ( props ) => {
         <li key={item.name}>{item.name}: {item.quantity} {item.unit}</li>
       )
     })
-    instructions = <p>{props.recipeList[recipeInd].instructions}</p>
+    instructions = <div>
+      <p>{props.recipeList[recipeInd].instructions}</p>
+      <p>Liczba porcji: {props.recipeList[recipeInd].portions}</p>
+    </div>
   }
 
   return (
     <div>
-      <section>
-        <h3>Lista przepisów</h3>
+      <div>
+        <h2>Lista przepisów</h2>
         <table>
           <thead>
             <tr>
@@ -46,8 +49,18 @@ const Recipes = ( props ) => {
           </tbody>
         </table>
         <button onClick={props.addNew}>Dodaj przepis</button>
-      </section>
-      <section>
+      </div>
+      <h2>
+        {props.internals.addRecipeToggle 
+        ? <input  
+            type="text" 
+            name="newRecipeNameInput" 
+            onChange={props.inputHandler} 
+            value={props.internals.newRecipeNameInput} 
+         /> 
+        : props.internals.chosenRecipe}
+      </h2>
+      <div>
         <h3>Składniki</h3>
         {props.internals.addRecipeToggle  
         ? <AddIngredients 
@@ -57,18 +70,30 @@ const Recipes = ( props ) => {
           rmvIng = {props.rmvIng}  
         />
         : <ul>{ingredientList}</ul>}
-      </section>
-      <section>
+      </div>
+      <div>
         <h3>Przygotowanie</h3>
         {props.internals.addRecipeToggle  
-        ? <textarea 
-            placeholder="Tu wpisz instrukcje przygotowania." 
-            name="tempAddInst" 
-            value={props.internals.tempAddInst} 
-            onChange={props.inputHandler}
-        />
+        ? <div>
+            <textarea 
+              placeholder="Tu wpisz instrukcje przygotowania." 
+              name="tempAddInst" 
+              value={props.internals.tempAddInst} 
+              onChange={props.inputHandler}
+            />
+            <label for="recPortInput">Liczba porcji:</label>
+            <input 
+              type="number" 
+              name="newRecipePortInput" 
+              onChange={props.inputHandler} 
+              value={props.internals.newRecipePortInput} 
+              id="recPortInput"
+            />
+            <button onClick={props.save}>Zapisz</button>
+            <button onClick={props.discard}>Odrzuć zmiany</button>
+        </div>
         : instructions}
-      </section>
+      </div>
     </div>
   )
 }
