@@ -116,7 +116,6 @@ class App extends Component {
         instructions: "Wszystkie składniki umieścić w kielichu blendera i zmiksować na gładki koktajl."
       }
     ],
-    chosenRecipe: '',
     units: [
       "szt.",
       "gram",
@@ -125,7 +124,15 @@ class App extends Component {
     fridgeInternal: {
       fridgeNameInput: '',
       fridgeQuantityInput: '',
-      fridgeUnitInput: 'szt.'
+      selectUnitInput: 'szt.'
+    },
+    recipesInternal: {
+      addRecipeToggle: true,
+      chosenRecipe: '',
+      addRecipeNameInput: '',
+      addRecipeQuantityInput: '',
+      selectUnitInput: 'szt.',
+      tempAddIngs: []
     }
   }
   
@@ -150,7 +157,7 @@ class App extends Component {
     })
   }
 
-  fridgeModifyAmountInputHandler = (index, e) => {
+  fridgeModifyAmtInputHandler = (index, e) => {
     let amt = e.target.value;
     this.setState((prevState) => {
       const updatedState = {...prevState};
@@ -169,7 +176,6 @@ class App extends Component {
 
   fridgeInputHandler = (e) => {
     const name = e.target.name;
-    console.log(name);
     const value = e.target.value;
     this.setState((prevState) => {
       const updatedState = {...prevState};
@@ -190,7 +196,7 @@ class App extends Component {
         updatedState.fridge.push({
           name: name.toUpperCase(),
           quantity: parseInt(quantity),
-          unit: this.state.fridgeInternal.fridgeUnitInput,
+          unit: this.state.fridgeInternal.selectUnitInput,
           modifyAmount: 0
         })
         return updatedState;
@@ -199,23 +205,56 @@ class App extends Component {
     
   }
 
-// ----------Recipes Handlers--------------
+  // ----------Recipes Handlers--------------
 
-recipesRemoveHandler = (index) => {
-  this.setState((prevState) => {
-    const updatedState = {...prevState};
-    updatedState.recipes.splice(index, 1);
-    return updatedState;
-  })
-}
+  recipesRemoveHandler = (index) => {
+    this.setState((prevState) => {
+      const updatedState = {...prevState};
+      updatedState.recipes.splice(index, 1);
+      return updatedState;
+    })
+  }
 
-recipesChooseHandler = (index) => {
-  this.setState((prevState) => {
-    return {
-      chosenRecipe: prevState.recipes[index].name
+  recipesChooseHandler = (index) => {
+    this.setState((prevState) => {
+      return {
+        recipesInternal: {
+          addRecipeToggle: prevState.recipesInternal.addRecipeToggle,
+          chosenRecipe: prevState.recipes[index].name
+        }
+      }
+    })
+  }
+
+  addRecipesIngHandler = () => {
+    const name = this.state.recipesInternal.addRecipeNameInput;
+    const quantity = this.state.recipesInternal.addRecipeQuantityInput;
+    const repeatedItem = this.state.recipesInternal.tempAddIngs.some(item => item.name.toUpperCase() === name.toUpperCase());
+    if (repeatedItem) return alert("Składnik już został dodany");
+
+    if (name !== '' && quantity !== '') {
+      this.setState((prevState) => {
+        const updatedState = {...prevState};
+        updatedState.recipesInternal.tempAddIngs.push({
+          name: name.toUpperCase(),
+          quantity: parseInt(quantity),
+          unit: this.state.recipesInternal.selectUnitInput,
+          modifyAmount: 0
+        })
+        return updatedState;
+      })
     }
-  })
-}
+  }
+
+  recipesInputHandler = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState((prevState) => {
+      const updatedState = {...prevState};
+      updatedState.recipesInternal[name] = value;
+      return updatedState;
+    })
+  }
 
   render() {
     return (
@@ -224,19 +263,21 @@ recipesChooseHandler = (index) => {
           <Layout>
             <Fridge 
               supplies={this.state.fridge} 
+              internals={this.state.fridgeInternal}
               addRem={this.fridgeAddRemHandler}
               modify={this.fridgeModifyHandler}
-              modifyAmtInput={this.fridgeModifyAmountInputHandler}
+              modifyAmtInput={this.fridgeModifyAmtInputHandler}
               remove={this.fridgeRemoveHandler}
               addItem={this.fridgeAddItemHandler}
               inputHandler={this.fridgeInputHandler}
-              internals={this.state.fridgeInternal}
             />
             <Recipes
               recipeList={this.state.recipes}
+              internals={this.state.recipesInternal}
               remove={this.recipesRemoveHandler}
               recipeChoose={this.recipesChooseHandler}
-              chosenRecipe={this.state.chosenRecipe}
+              addRecipeIng={this.addRecipesIngHandler}
+              inputHandler={this.recipesInputHandler}
             />
           </Layout>
         </SelectContext.Provider>

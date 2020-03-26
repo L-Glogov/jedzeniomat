@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectUnit from '../Auxiliary/SelectUnit';
+import AddIngredients from './AddIngredients';
 
 const Recipes = ( props ) => {
 
@@ -17,40 +17,17 @@ const Recipes = ( props ) => {
     )
   })
 
-  const recipeInd = props.recipeList.findIndex(item => item.name === props.chosenRecipe);
+  const recipeInd = props.recipeList.findIndex(item => item.name === props.internals.chosenRecipe);
   let ingredientList;
   let instructions;
   if (recipeInd >= 0) {
-    ingredientList = props.recipeList[recipeInd].ingredients.map((item, index) => {
+    ingredientList = props.recipeList[recipeInd].ingredients.map((item) => {
       return (
         <li key={item.name}>{item.name}: {item.quantity} {item.unit}</li>
       )
     })
     instructions = <p>{props.recipeList[recipeInd].instructions}</p>
   }
-
-  const addIngredientList = <table>
-      <thead>
-        <tr>
-          <th>Nazwa</th>
-          <th>Ilość</th>
-          <th>Jednostka</th>
-          <th>Dodaj</th>
-        </tr>
-      </thead>
-      <tr>
-        <td>
-          <input type="text" />
-        </td>
-        <td>
-          <input type="number" />
-        </td>
-        <td>
-          <SelectUnit />
-        </td>
-        <td> </td>
-      </tr>
-    </table>
 
   return (
     <div>
@@ -72,9 +49,13 @@ const Recipes = ( props ) => {
       </section>
       <section>
         <h3>Składniki</h3>
-        <ul>
-          {ingredientList}
-        </ul>
+        {props.internals.addRecipeToggle  
+        ? <AddIngredients 
+          internals={props.internals} 
+          addRecipeIng={props.addRecipeIng}
+          inputHandler={props.inputHandler}   
+        />
+        : <ul>{ingredientList}</ul>}
       </section>
       <section>
         <h3>Przygotowanie</h3>

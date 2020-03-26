@@ -77,13 +77,24 @@ const Fridge = ( props ) => {
         </tr>
         <tr>
           <td>
-            <input type="text" name="fridgeNameInput" onChange={props.inputHandler} value={props.internals.fridgeNameInput}/>
+            <input 
+              type="text" 
+              name="fridgeNameInput" 
+              onChange={props.inputHandler} 
+              value={props.internals.fridgeNameInput}
+            />
           </td>
           <td>
-            <input type="number" name="fridgeQuantityInput" min={0} onChange={props.inputHandler} value={props.internals.fridgeQuantityInput}/>
+            <input 
+              type="number" 
+              name="fridgeQuantityInput" 
+              min={0} 
+              onChange={props.inputHandler} 
+              value={props.internals.fridgeQuantityInput}  
+            />
           </td>
           <td>
-            <SelectUnit inputHandler={props.inputHandler} internals={props.internals} />
+            <SelectUnit inputHandler={props.inputHandler} selectUnitInput={props.internals.selectUnitInput} />
           </td>
           <td>
             <button onClick={props.addItem}>Dodaj</button>

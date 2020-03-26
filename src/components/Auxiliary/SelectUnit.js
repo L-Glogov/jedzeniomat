@@ -11,7 +11,7 @@ const SelectUnit = ( props ) => {
   })
 
   return (
-    <select onChange={props.inputHandler} name="fridgeUnitInput" value={props.internals.fridgeUnitInput}>
+    <select onChange={props.inputHandler} name="selectUnitInput" value={props.selectUnitInput}>
       {unitList}
     </select>
   )
