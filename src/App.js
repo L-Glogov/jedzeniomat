@@ -370,6 +370,19 @@ class App extends Component {
     this.setState(prevState => {
       const updatedState = {...prevState};
       updatedState.menu.startDate = date;
+      updatedState.menu.recipes = [{
+          date: date,
+          dayNum: 1,
+          recList: []
+      }];
+      for(let n = 1; n < prevState.menu.numDays; n++) {
+        updatedState.menu.recipes.push({
+          date: addDays(date, n),
+          dayNum: 1 + n,
+          recList: []
+        });
+      }
+      updatedState.menuInternal.currentDay = 1;
       return updatedState;
     })
   }
@@ -388,6 +401,9 @@ class App extends Component {
           });
         }
       } else if (value < curNumDays) {
+        if (value < updatedState.menuInternal.currentDay) {
+          updatedState.menuInternal.currentDay = 1;
+        }
         updatedState.menu.recipes.splice(value);
       }
       updatedState.menu.numDays = value;
@@ -425,6 +441,15 @@ class App extends Component {
       if (prevState.menuInternal.currentDay < prevState.menu.numDays) {
         updatedState.menuInternal.currentDay++;
       }
+      return updatedState;
+    })
+  }
+
+  menuGoToDayHandler = (e) => {
+    const value = e.target.value;
+    this.setState(prevState => {
+      const updatedState = {...prevState};
+      updatedState.menuInternal.currentDay = parseInt(value);
       return updatedState;
     })
   }
@@ -467,6 +492,7 @@ class App extends Component {
               addRec={this.menuAddRecHandler}
               rmvRec={this.menuRmvRecHandler}
               nextDay={this.menuNextDayHandler}
+              goToDay={this.menuGoToDayHandler}
             />
           </Layout>
         </SelectContext.Provider>

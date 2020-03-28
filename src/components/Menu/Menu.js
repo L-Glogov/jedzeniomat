@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale }  from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns';
+import { pl } from 'date-fns/locale';
+registerLocale("pl", pl);
 
 const Menu = ( props ) => {
-
   const dayInd = props.menu.recipes.findIndex(item => item.dayNum === props.internals.currentDay);
   const recipeList = props.menu.recipes[dayInd].recList.map((item, index) => {
     return (
@@ -23,9 +24,11 @@ const Menu = ( props ) => {
   })
   
   const dayList = props.menu.recipes.map(item => {
-    const formatDate = format(item.date, "do LLL y");
+    const formatDate = format(item.date, "do LLL y",{
+      locale: pl
+    });
     return (
-      <option value={formatDate} key={formatDate}>{formatDate}</option>
+      <option value={item.dayNum} key={item.dayNum}>{formatDate}</option>
     )
   })
 
@@ -34,7 +37,8 @@ const Menu = ( props ) => {
       <label>Data rozpoczęcia:</label>
       <DatePicker 
         selected={props.menu.startDate} 
-        onChange={props.dateChg} 
+        onChange={props.dateChg}
+        locale="pl" 
       />
       <label>Liczba dni:</label>
       <input 
@@ -60,7 +64,7 @@ const Menu = ( props ) => {
           <tfoot>
             <tr>
               <td>
-                <select onChange={props.inputHandler} onLoad={props.inputHandler} name="menuRecSelect"  value={props.internals.menuRecSelect}>
+                <select onChange={props.inputHandler} name="menuRecSelect"  value={props.internals.menuRecSelect}>
                   <option disabled>--Wybierz przepis--</option>
                   {recipeOptionList}
                 </select>
@@ -84,7 +88,7 @@ const Menu = ( props ) => {
         </table>
         <button onClick={props.nextDay}>Next Day</button>
         <label htmlFor="menuSelectDay">Wybierz dzień:</label>
-        <select id="menuSelectDay">
+        <select onChange={props.goToDay} name="menuSelectDay" value={props.internals.currentDay} id="menuSelectDay">
           {dayList}
         </select>
       </div>
