@@ -81,7 +81,7 @@ const Recipes = ( props ) => {
               value={props.internals.tempAddInst} 
               onChange={props.inputHandler}
             />
-            <label for="recPortInput">Liczba porcji:</label>
+            <label htmlFor="recPortInput">Liczba porcji:</label>
             <input 
               type="number" 
               name="newRecipePortInput" 

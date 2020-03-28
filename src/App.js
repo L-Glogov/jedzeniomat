@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Layout from './containers/Layout/Layout';
 import Fridge from './components/Fridge/Fridge';
 import Recipes from './components/Recipes/Recipes';
+import Menu from './components/Menu/Menu';
 import SelectContext from './context/selectContext';
+import { addDays } from 'date-fns';
 
 class App extends Component {
   state = {
@@ -138,10 +140,27 @@ class App extends Component {
       selectUnitInput: 'szt.',
       tempAddIngs: [],
       tempAddInst: '',
+    },
+    menu: {
+      startDate: new Date(),
+      numDays: 1,
+      recipes: [
+        {
+          date: new Date(),
+          dayNum: 1,
+          recList: []
+        }
+      ]
+    },
+    menuInternal: {
+      menuNumPortInput: 1,
+      menuRecSelect: '--Wybierz przepis--',
+      currentDay: 1
     }
   }
-  
-  // ----------Fridge Handlers--------------
+
+
+  // ----------Fridge Methods--------------
 
   fridgeAddRemHandler = (amount, index) => {
     this.setState((prevState) => {
@@ -210,7 +229,7 @@ class App extends Component {
     
   }
 
-  // ----------Recipes Handlers--------------
+  // ----------Recipes Methods --------------
 
   recipesRemoveHandler = (index) => {
     this.setState((prevState) => {
@@ -287,6 +306,7 @@ class App extends Component {
     this.setState(prevState => {
       const updatedState = {...prevState};
       updatedState.recipesInternal.addRecipeToggle = true;
+      updatedState.recipesInternal.editRecipeToggle = false;
       updatedState.recipesInternal.chosenRecipe = '';
       updatedState.recipesInternal.editName = '';
       updatedState.recipesInternal.newRecipeNameInput = '';
@@ -297,7 +317,7 @@ class App extends Component {
     })
   }
 
-  clearChanges = (updatedState) => {
+  recipesClearChangesAux = (updatedState) => {
     updatedState.recipesInternal.addRecipeToggle = false;
     updatedState.recipesInternal.editRecipeToggle = false;
     updatedState.recipesInternal.addRecIngNameInput = '';
@@ -323,14 +343,89 @@ class App extends Component {
         ingredients: prevState.recipesInternal.tempAddIngs,
         instructions: prevState.recipesInternal.tempAddInst
       });
-      return this.clearChanges(updatedState);
+      return this.recipesClearChangesAux(updatedState);
     })
   }
 
   recipesDiscardHandler = () => {
     this.setState(prevState => {
       const updatedState = {...prevState};
-      return this.clearChanges(updatedState); 
+      return this.recipesClearChangesAux(updatedState); 
+    })
+  }
+
+  // ----------Menu Methods --------------
+
+  menuInputHandler = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState((prevState) => {
+      const updatedState = {...prevState};
+      updatedState.menuInternal[name] = value;
+      return updatedState;
+    })
+  }
+
+  menuDateHandler = (date) => {
+    this.setState(prevState => {
+      const updatedState = {...prevState};
+      updatedState.menu.startDate = date;
+      return updatedState;
+    })
+  }
+
+  menuNumDaysHandler = (e) => {
+    const value = parseInt(e.target.value);
+    this.setState((prevState) => {
+      const updatedState = {...prevState};
+      const curNumDays = prevState.menu.numDays;
+      if (value > curNumDays) {
+        for(let n = 1; n <= value - curNumDays; n++) {
+          updatedState.menu.recipes.push({
+            date: addDays(prevState.menu.startDate, curNumDays + n - 1),
+            dayNum: curNumDays + n,
+            recList: []
+          });
+        }
+      } else if (value < curNumDays) {
+        updatedState.menu.recipes.splice(value);
+      }
+      updatedState.menu.numDays = value;
+      
+      return updatedState;
+    })
+  }
+  
+  menuAddRecHandler = () => {
+    this.setState((prevState) => {
+      if (prevState.menuInternal.menuRecSelect === '--Wybierz przepis--') {
+        return alert("Wybierz przepis!");
+      }
+      const updatedState = {...prevState};
+      const dayInd = updatedState.menu.recipes.findIndex(item => item.dayNum === updatedState.menuInternal.currentDay);
+      updatedState.menu.recipes[dayInd].recList.push({
+        name: prevState.menuInternal.menuRecSelect,
+        portions: prevState.menuInternal.menuNumPortInput
+      });
+      return updatedState;
+    })
+  }
+
+  menuRmvRecHandler = (index, dayInd) => {
+    this.setState((prevState) => {
+      const updatedState = {...prevState};
+      updatedState.menu.recipes[dayInd].recList.splice(index, 1);
+      return updatedState;
+    })
+  }
+
+  menuNextDayHandler = () => {
+    this.setState(prevState => {
+      const updatedState = {...prevState};
+      if (prevState.menuInternal.currentDay < prevState.menu.numDays) {
+        updatedState.menuInternal.currentDay++;
+      }
+      return updatedState;
     })
   }
 
@@ -361,6 +456,17 @@ class App extends Component {
               addNew={this.recipesAddNewToggle}
               save={this.recipesSaveHandler}
               discard={this.recipesDiscardHandler}
+            />
+            <Menu 
+              menu={this.state.menu}
+              recipeList={this.state.recipes}
+              internals={this.state.menuInternal}
+              inputHandler={this.menuInputHandler}
+              dateChg={this.menuDateHandler}
+              numDaysChg={this.menuNumDaysHandler}
+              addRec={this.menuAddRecHandler}
+              rmvRec={this.menuRmvRecHandler}
+              nextDay={this.menuNextDayHandler}
             />
           </Layout>
         </SelectContext.Provider>
