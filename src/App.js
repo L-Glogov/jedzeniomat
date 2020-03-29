@@ -156,7 +156,8 @@ class App extends Component {
       menuNumPortInput: 1,
       menuRecSelect: '--Wybierz przepis--',
       currentDay: 1
-    }
+    },
+    currentDisplay: ''
   }
 
 
@@ -454,47 +455,61 @@ class App extends Component {
     })
   }
 
+  // ----------Layout Methods --------------
+
+  layoutToggle = (display) => {
+    this.setState({
+      currentDisplay: display
+    })
+  }
+
   render() {
     return (
       <div>
         <SelectContext.Provider value={{units: this.state.units}}>
-          <Layout>
-            <Fridge 
-              supplies={this.state.fridge} 
-              internals={this.state.fridgeInternal}
-              addRem={this.fridgeAddRemHandler}
-              modify={this.fridgeModifyHandler}
-              modifyAmtInput={this.fridgeModifyAmtInputHandler}
-              remove={this.fridgeRemoveHandler}
-              addItem={this.fridgeAddItemHandler}
-              inputHandler={this.fridgeInputHandler}
-            />
-            <Recipes
-              recipeList={this.state.recipes}
-              internals={this.state.recipesInternal}
-              remove={this.recipesRemoveHandler}
-              modify={this.recipesModifyHandler}
-              recipeChoose={this.recipesChooseHandler}
-              addRecipeIng={this.recipesAddIngHandler}
-              inputHandler={this.recipesInputHandler}
-              rmvIng={this.recipesRemoveIngHandler}
-              addNew={this.recipesAddNewToggle}
-              save={this.recipesSaveHandler}
-              discard={this.recipesDiscardHandler}
-            />
-            <Menu 
-              menu={this.state.menu}
-              recipeList={this.state.recipes}
-              supplies={this.state.fridge}
-              internals={this.state.menuInternal}
-              inputHandler={this.menuInputHandler}
-              dateChg={this.menuDateHandler}
-              numDaysChg={this.menuNumDaysHandler}
-              addRec={this.menuAddRecHandler}
-              rmvRec={this.menuRmvRecHandler}
-              nextDay={this.menuNextDayHandler}
-              goToDay={this.menuGoToDayHandler}
-            />
+          <Layout layoutToggle={this.layoutToggle}>
+            {(this.state.currentDisplay === "fridge") ? 
+              <Fridge 
+                supplies={this.state.fridge} 
+                internals={this.state.fridgeInternal}
+                addRem={this.fridgeAddRemHandler}
+                modify={this.fridgeModifyHandler}
+                modifyAmtInput={this.fridgeModifyAmtInputHandler}
+                remove={this.fridgeRemoveHandler}
+                addItem={this.fridgeAddItemHandler}
+                inputHandler={this.fridgeInputHandler}
+              /> : null
+            }
+            {(this.state.currentDisplay === "recipes") ? 
+              <Recipes
+                recipeList={this.state.recipes}
+                internals={this.state.recipesInternal}
+                remove={this.recipesRemoveHandler}
+                modify={this.recipesModifyHandler}
+                recipeChoose={this.recipesChooseHandler}
+                addRecipeIng={this.recipesAddIngHandler}
+                inputHandler={this.recipesInputHandler}
+                rmvIng={this.recipesRemoveIngHandler}
+                addNew={this.recipesAddNewToggle}
+                save={this.recipesSaveHandler}
+                discard={this.recipesDiscardHandler}
+              /> : null
+            }
+            {(this.state.currentDisplay === "menu") ? 
+              <Menu 
+                menu={this.state.menu}
+                recipeList={this.state.recipes}
+                supplies={this.state.fridge}
+                internals={this.state.menuInternal}
+                inputHandler={this.menuInputHandler}
+                dateChg={this.menuDateHandler}
+                numDaysChg={this.menuNumDaysHandler}
+                addRec={this.menuAddRecHandler}
+                rmvRec={this.menuRmvRecHandler}
+                nextDay={this.menuNextDayHandler}
+                goToDay={this.menuGoToDayHandler}
+              /> : null
+            }
           </Layout>
         </SelectContext.Provider>
         
