@@ -485,6 +485,7 @@ class App extends Component {
             <Menu 
               menu={this.state.menu}
               recipeList={this.state.recipes}
+              supplies={this.state.fridge}
               internals={this.state.menuInternal}
               inputHandler={this.menuInputHandler}
               dateChg={this.menuDateHandler}

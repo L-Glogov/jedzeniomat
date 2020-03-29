@@ -6,6 +6,7 @@ import { pl } from 'date-fns/locale';
 registerLocale("pl", pl);
 
 const Menu = ( props ) => {
+
   const dayInd = props.menu.recipes.findIndex(item => item.dayNum === props.internals.currentDay);
   const recipeList = props.menu.recipes[dayInd].recList.map((item, index) => {
     return (
@@ -32,6 +33,67 @@ const Menu = ( props ) => {
     )
   })
 
+  const chosenDay = `Dzień ${props.internals.currentDay}: ${format(props.menu.recipes[dayInd].date, "do LLL y",{
+    locale: pl
+  })}`;
+
+  const fullList = props.menu.recipes.map(item => {
+    const recList = item.recList.map((recipe, index) => {
+      return (
+        <li key={index}>{recipe.name} dla {recipe.portions}</li>
+      )
+    })
+    return (
+      <div key={item.dayNum}>
+        <h3>{format(item.date, "do LLL y",{locale: pl})}</h3>
+        <ul>
+          {recList}
+        </ul>
+      </div>
+    )
+  })
+
+  const shopListArr = [];
+  props.menu.recipes.forEach(item => {
+    item.recList.forEach(recipe => {
+      props.recipeList.find(element => element.name === recipe.name).ingredients.forEach(ing => {
+        const listInd = shopListArr.findIndex(listItem => listItem.name === ing.name);
+        if (listInd < 0) {
+          shopListArr.push({
+            name: ing.name,
+            quantity: ing.quantity * (recipe.portions / props.recipeList.find(element => element.name === recipe.name).portions),
+            unit: ing.unit
+          })
+        } else {
+          shopListArr[listInd].quantity += ing.quantity * (recipe.portions / props.recipeList.find(element => element.name === recipe.name).portions);
+        }
+      })
+    })
+  })
+  
+  const fullShoppingList = shopListArr.map(item => {
+    const quantity = Math.ceil(item.quantity);
+    return (
+      <li key={item.name}>{item.name}: {quantity} {item.unit}</li>
+    )
+  })
+
+  
+  const suppShoppingList = [...shopListArr]
+    .map(item => {
+      const fridgeIng = props.supplies.find(ing => ing.name === item.name);
+      if (fridgeIng) {item.quantity -= fridgeIng.quantity}
+      return item;
+  })
+    .filter(item => item.quantity > 0)
+    .map(item => {
+      const quantity = Math.ceil(item.quantity);
+      return (
+        <li key={item.name}>{item.name}: {quantity} {item.unit}</li>
+      )
+    })
+
+
   return (
     <Fragment>
       <label>Data rozpoczęcia:</label>
@@ -49,7 +111,7 @@ const Menu = ( props ) => {
       /> 
       <div>
         <h2>Wybrany Dzień</h2>
-        <h2>Day 1</h2>
+        <h2>{chosenDay}</h2>
         <table>
           <thead>
             <tr>
@@ -92,8 +154,21 @@ const Menu = ( props ) => {
           {dayList}
         </select>
       </div>
+      <div>
+        {fullList}
+      </div>
+      <div>
+        <h2>Lista zakupów:</h2>
+        <h3>Brakujące produkty:</h3>
+        <ul>
+          {suppShoppingList}
+        </ul>
+        <h3>Pełna lista:</h3>
+        <ul>
+          {fullShoppingList}
+        </ul>
+      </div>
     </Fragment>
-    
   )
 }
 
