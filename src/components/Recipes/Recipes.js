@@ -57,18 +57,18 @@ const Recipes = ( props ) => {
             name="newRecipeNameInput" 
             onChange={props.inputHandler} 
             value={props.internals.newRecipeNameInput} 
-         /> 
+          /> 
         : props.internals.chosenRecipe}
       </h2>
       <div>
         <h3>Składniki</h3>
         {props.internals.addRecipeToggle  
         ? <AddIngredients 
-          internals={props.internals} 
-          addRecipeIng={props.addRecipeIng}
-          inputHandler={props.inputHandler} 
-          rmvIng = {props.rmvIng}  
-        />
+            internals={props.internals} 
+            addRecipeIng={props.addRecipeIng}
+            inputHandler={props.inputHandler} 
+            rmvIng = {props.rmvIng}  
+          />
         : <ul>{ingredientList}</ul>}
       </div>
       <div>
@@ -91,9 +91,10 @@ const Recipes = ( props ) => {
             />
             <button onClick={props.save}>Zapisz</button>
             <button onClick={props.discard}>Odrzuć zmiany</button>
-        </div>
+          </div>
         : instructions}
       </div>
+      <button onClick={props.saveData}>Zapisz zmiany</button>
     </div>
   )
 }

@@ -4,7 +4,6 @@ import SelectUnit from '../Auxiliary/SelectUnit';
 const Fridge = ( props ) => {
   
   const supplies = props.supplies.map((item, index) => {
-    
     let amount;
     let step;
     switch(item.unit) {
@@ -24,7 +23,6 @@ const Fridge = ( props ) => {
         amount = 1;
         step = 1;
     }
-  
     return (
       <tr key={item.name.toUpperCase()}>
         <td>{item.name.toUpperCase()}</td>
@@ -102,6 +100,7 @@ const Fridge = ( props ) => {
         </tr>
       </tfoot>         
     </table>
+    <button onClick={props.saveData}>Zapisz zmiany</button>
     </Fragment>
   )
 }

@@ -17,34 +17,6 @@ const AddIngredients = ( props ) => {
     })
   }
   
-  const addInputs = (
-    <tr>
-      <td>
-        <input 
-          type="text" 
-          name="addRecIngNameInput" 
-          onChange={props.inputHandler} 
-          value={props.internals.addRecIngNameInput} 
-        />
-      </td>
-      <td>
-        <input 
-          type="number" 
-          name="addRecIngQuantityInput" 
-          min={1} 
-          onChange={props.inputHandler} 
-          value={props.internals.addRecIngQuantityInput}  
-        />
-      </td>
-      <td>
-        <SelectUnit inputHandler={props.inputHandler} selectUnitInput={props.internals.selectUnitInput} />
-      </td>
-      <td>
-        <button onClick={props.addRecipeIng} >Dodaj</button>
-      </td>
-    </tr>
-  )
-  
   return (
     <table>
       <thead>
@@ -59,7 +31,31 @@ const AddIngredients = ( props ) => {
         {currentIng}
       </tbody>
       <tfoot>
-      {addInputs}
+        <tr>
+          <td>
+            <input 
+              type="text" 
+              name="addRecIngNameInput" 
+              onChange={props.inputHandler} 
+              value={props.internals.addRecIngNameInput} 
+            />
+          </td>
+          <td>
+            <input 
+              type="number" 
+              name="addRecIngQuantityInput" 
+              min={1} 
+              onChange={props.inputHandler} 
+              value={props.internals.addRecIngQuantityInput}  
+            />
+          </td>
+          <td>
+            <SelectUnit inputHandler={props.inputHandler} selectUnitInput={props.internals.selectUnitInput} />
+          </td>
+          <td>
+            <button onClick={props.addRecipeIng} >Dodaj</button>
+          </td>
+        </tr>
       </tfoot>
     </table>
   )

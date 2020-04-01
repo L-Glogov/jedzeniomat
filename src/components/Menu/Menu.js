@@ -10,7 +10,7 @@ const Menu = ( props ) => {
   const dayInd = props.menu.recipes.findIndex(item => item.dayNum === props.internals.currentDay);
   const recipeList = props.menu.recipes[dayInd].recList.map((item, index) => {
     return (
-      <tr key={index}>
+      <tr key={item.name + index}>
         <td>{item.name}</td>
         <td>{item.portions}</td>
         <td><button onClick={props.rmvRec.bind(this, index, dayInd)}>X</button></td>
@@ -40,7 +40,7 @@ const Menu = ( props ) => {
   const fullList = props.menu.recipes.map(item => {
     const recList = item.recList.map((recipe, index) => {
       return (
-        <li key={index}>{recipe.name} dla {recipe.portions}</li>
+        <li key={recipe.name + index}>{recipe.name} dla {recipe.portions}</li>
       )
     })
     return (
