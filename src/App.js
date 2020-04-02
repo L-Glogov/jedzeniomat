@@ -66,6 +66,10 @@ componentDidMount() {
           shouldLoadExtData: false
         })
       })
+      .catch(error => {
+        console.error(error); 
+        alert("Network error: The database failed to load.");
+      }) 
   }
 }
 
@@ -74,7 +78,11 @@ saveDataHandler = () => {
     "recipes": this.state.recipes,
     "fridge": this.state.fridge
   }
-  Axios.post('http://localhost:3000/db-state', post);
+  Axios.post('http://localhost:3000/db-state', post)
+    .catch(error => {
+      console.error(error);
+      alert("Network error: Failed to save data to database");
+    })
 }
 
   // ----------Fridge Methods--------------

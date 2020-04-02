@@ -1,4 +1,67 @@
-.head {
-  font-size: 22px;
-  color: coral;
+.logo {
+  position: absolute;
+  right: 50px;
+  top: 10px;
+  filter: drop-shadow(2px 2px 2px #bf1343);
+  width: 300px;
+}
+
+.copy {
+  position: absolute;
+  bottom: 0px;
+  margin-bottom: 10px;
+  padding-bottom: 0;
+  left: 1%;
+  color: black;
+}
+
+.copy p {
+  bottom: 0px;
+  margin-bottom: -5px;
+  padding-bottom: 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  text-shadow: 0px 0px 8px white;
+  font-size: 0.8em;
+}
+
+.navButton {
+  position: absolute;
+  left: 60%;
+  top: 58%;
+  transform: translate(-50%, -50%);
+}
+
+.navButton ul {
+  list-style-type: none;
+  display: inline-flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.navButton ul li {
+  margin: 0 50px;
+}
+
+.navButton button {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid #bf1343;
+  border-radius: 10px;
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  padding: 21px 45px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.navButton button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.67);
+  background-color: rgba(191,19,67,0.4);
+  border: 2px solid white;
+  color: white;
 }
