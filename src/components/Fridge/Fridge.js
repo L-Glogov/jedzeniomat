@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import SelectUnit from '../Auxiliary/SelectUnit';
 import styles from './Fridge.module.css';
 
@@ -25,14 +25,14 @@ const Fridge = ( props ) => {
         step = 1;
     }
     return (
-      <tr key={item.name.toUpperCase()}>
-        <td className={styles.name}><p>{item.name.toUpperCase()}</p></td>
-        <td className={styles.quantity}>{item.quantity} {item.unit}</td>
-        <td className={styles.addRem}>
-          <button onClick={props.addRem.bind(this, amount, index)}>+</button>
-          <button onClick={props.addRem.bind(this, -amount, index)}>-</button>
-        </td>
-        <td className={styles.modify}>
+      <ul key={item.name.toUpperCase()} className={styles.ing}>
+        <li className={styles.name}>{item.name.toUpperCase()}</li>
+        <li className={styles.quantity}>{item.quantity} {item.unit}</li>
+        <li className={styles.addRem}>
+          <button className={styles.plusBtn} onClick={props.addRem.bind(this, amount, index)}>+</button>
+          <button className={styles.minusBtn} onClick={props.addRem.bind(this, -amount, index)}>-</button>
+        </li>
+        <li className={styles.modify}>
           <input 
             type='number' 
             min={0} 
@@ -41,34 +41,34 @@ const Fridge = ( props ) => {
             onChange={(e) => props.modifyAmtInput(index, e)}
           />
           <button onClick={props.modify.bind(this, item.modifyAmount, index)}>Zmień</button>
-        </td>
-        <td className={styles.rem}>
+        </li>
+        <li className={styles.rem}>
           <button onClick={props.remove.bind(this, index)}>X</button>
-        </td>
-      </tr>
+        </li>
+      </ul>
     )
   });
 
   return(
     <main className={styles.mainCont}>
-      <table>
-        <thead>
-          <tr>
-            <th className={styles.name}>Nazwa</th>
-            <th className={styles.quantity}>Ilość</th>
-            <th className={styles.addRem}>+/-</th>
-            <th className={styles.modify}>Zmień</th>
-            <th className={styles.rem}>Usuń</th>
-          </tr>
-        </thead>
-        <tbody>
-          {supplies}
-        </tbody>     
-      </table>
+      <div className={styles.fridgeTable}>
+        <ul className={styles.suppliesList}>
+          <ul className={styles.listLabels}>
+            <li className={styles.name + ' ' + styles.labelItem}>Nazwa</li>
+            <li className={styles.quantity + ' ' + styles.labelItem}>Ilość</li>
+            <li className={styles.addRem + ' ' + styles.labelItem}>+/-</li>
+            <li className={styles.modify + ' ' + styles.labelItem}>Zmień</li>
+            <li className={styles.rem + ' ' + styles.labelItem}>Usuń</li>
+          </ul>
+          <div className={styles.scroll}>
+            {supplies}
+          </div>
+        </ul>
+      </div>
       <h3>Dodaj Składnik</h3>
-      <ul>
+      <ul className={styles.addIng}>
         <li>
-          <label htmlFor="fridgeNameInput">Nazwa</label>
+          <label htmlFor="fridgeNameInput">Nazwa:</label>
           <input 
             type="text" 
             name="fridgeNameInput" 
@@ -77,7 +77,7 @@ const Fridge = ( props ) => {
          />
         </li>
         <li>
-          <label htmlFor="fridgeQuantityInput">Ilość</label>
+          <label htmlFor="fridgeQuantityInput">Ilość:</label>
           <input 
             type="number" 
             name="fridgeQuantityInput" 
@@ -87,14 +87,14 @@ const Fridge = ( props ) => {
           />
         </li>
         <li>
-          <label htmlFor="fridgeUnitInput">Jednostka</label>
+          <label htmlFor="fridgeUnitInput">Jednostka:</label>
           <SelectUnit inputHandler={props.inputHandler} selectUnitInput={props.internals.selectUnitInput} name="fridgeUnitInput"/>
         </li>
         <li>
-          <button onClick={props.addItem}>Dodaj</button>
+          <button onClick={props.addItem}>Dodaj:</button>
         </li>
       </ul>   
-      <button onClick={props.saveData}>Zapisz zmiany</button>
+      <button className={styles.save} onClick={props.saveData}>Zapisz zmiany</button>
     </main>
   )
 }
