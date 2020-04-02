@@ -52,7 +52,7 @@ class App extends Component {
       menuRecSelect: '--Wybierz przepis--',
       currentDay: 1
     },
-    currentDisplay: '',
+    currentDisplay: 'fridge',
     shouldLoadExtData: true
   }
 
@@ -393,7 +393,7 @@ saveDataHandler = () => {
     return (
       <div>
         <SelectContext.Provider value={{units: this.state.units}}>
-          <Layout layoutDisplay={this.layoutDisplay}>
+          <Layout layoutDisplay={this.layoutDisplay} display={this.state.currentDisplay} >
             {(this.state.currentDisplay === "fridge") ? 
               <Fridge 
                 supplies={this.state.fridge} 
