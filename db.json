@@ -108,6 +108,12 @@
         "quantity": 500,
         "unit": "ml",
         "modifyAmount": 0
+      },
+      {
+        "name": "CEBULA",
+        "quantity": 4,
+        "unit": "szt.",
+        "modifyAmount": 0
       }
     ]
   }

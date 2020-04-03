@@ -1,5 +1,6 @@
 import React from 'react';
 import AddIngredients from './AddIngredients';
+import styles from './Recipes.module.css';
 
 const Recipes = ( props ) => {
 
@@ -33,8 +34,8 @@ const Recipes = ( props ) => {
   }
 
   return (
-    <div>
-      <div>
+    <main className={styles.mainCont}>
+      <div className={styles.recListCont}>
         <h2>Lista przepisów</h2>
         <table>
           <thead>
@@ -50,28 +51,29 @@ const Recipes = ( props ) => {
         </table>
         <button onClick={props.addNew}>Dodaj przepis</button>
       </div>
-      <h2>
-        {props.internals.addRecipeToggle 
-        ? <input  
-            type="text" 
-            name="newRecipeNameInput" 
-            onChange={props.inputHandler} 
-            value={props.internals.newRecipeNameInput} 
-          /> 
-        : props.internals.chosenRecipe}
-      </h2>
-      <div>
-        <h3>Składniki</h3>
-        {props.internals.addRecipeToggle  
-        ? <AddIngredients 
-            internals={props.internals} 
-            addRecipeIng={props.addRecipeIng}
-            inputHandler={props.inputHandler} 
-            rmvIng = {props.rmvIng}  
-          />
-        : <ul>{ingredientList}</ul>}
-      </div>
-      <div>
+      <div className={styles.recShowCont}>
+        <h2>
+          {props.internals.addRecipeToggle 
+          ? <input  
+              type="text" 
+              name="newRecipeNameInput" 
+              onChange={props.inputHandler} 
+              value={props.internals.newRecipeNameInput} 
+            /> 
+          : props.internals.chosenRecipe}
+        </h2>
+        <div>
+          <h3>Składniki</h3>
+          {props.internals.addRecipeToggle  
+          ? <AddIngredients 
+              internals={props.internals} 
+              addRecipeIng={props.addRecipeIng}
+              inputHandler={props.inputHandler} 
+              rmvIng = {props.rmvIng}  
+            />
+          : <ul>{ingredientList}</ul>}
+        </div>
+        <div>
         <h3>Przygotowanie</h3>
         {props.internals.addRecipeToggle  
         ? <div>
@@ -94,8 +96,9 @@ const Recipes = ( props ) => {
           </div>
         : instructions}
       </div>
-      <button onClick={props.saveData}>Zapisz zmiany</button>
-    </div>
+      </div>
+      {/* <button onClick={props.saveData}>Zapisz zmiany</button> */}
+    </main>
   )
 }
 

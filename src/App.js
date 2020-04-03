@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Layout from './components/Layout/Layout';
 import Fridge from './components/Fridge/Fridge';
 import Recipes from './components/Recipes/Recipes';
@@ -52,7 +52,7 @@ class App extends Component {
       menuRecSelect: '--Wybierz przepis--',
       currentDay: 1
     },
-    currentDisplay: 'fridge',
+    currentDisplay: 'recipes',
     shouldLoadExtData: true
   }
 
@@ -391,7 +391,7 @@ saveDataHandler = () => {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <SelectContext.Provider value={{units: this.state.units}}>
           <Layout layoutDisplay={this.layoutDisplay} display={this.state.currentDisplay} >
             {(this.state.currentDisplay === "fridge") ? 
@@ -439,9 +439,8 @@ saveDataHandler = () => {
               /> : null
             }
           </Layout>
-        </SelectContext.Provider>
-        
-      </div>
+        </SelectContext.Provider>   
+      </Fragment>
     );
   }
 }

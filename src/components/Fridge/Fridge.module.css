@@ -3,22 +3,34 @@ main.mainCont {
   left: 60%;
   top: 65%;
   transform: translate(-50%, -50%);
-  height: 50%;
-  width: 55%;
+  height: 56%;
+  width: 58%;
   background-color: rgba(255,255,255,0.7);
   border-radius: 10px;
-  padding: 20px;
   font-family: 'Lato', sans-serif;
+
+}
+
+.border { 
+  height: 86%;
+  width: 96%;
+  border-radius: 10px;
+  font-family: 'Lato', sans-serif;
+  border: 2px solid #bf1343;
+  justify-content: center;
+  margin: auto;
+  margin-top: 10px;
 }
 
 .fridgeTable {
   width: 100%;
-  height: 65%;
+  height: 76%;
   margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: -5%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .listLabels {
@@ -27,40 +39,37 @@ main.mainCont {
   flex-direction: row;
   justify-content: center;
   flex-wrap: nowrap;
-  padding-top: 5%;
+  padding-left: 0;
 }
 
-.suppliesList {
-  flex-direction: row;
-}
-
-.scroll {
+.scrollList {
   height: 70%;
   overflow-y: scroll;
   overflow-x: auto;
   scrollbar-width: thin;
   scrollbar-color: #bf1343 rgba(255,255,255,0.2);
+  margin-top: -20px;
 }
 
-.scroll::-webkit-scrollbar {
+.scrollList::-webkit-scrollbar {
   width: 12px;
 }
 
-.scroll::-webkit-scrollbar-track {
+.scrollList::-webkit-scrollbar-track {
   background: rgba(255,255,255,0.2);
 }
 
-.scroll::-webkit-scrollbar-thumb {
+.scrollList::-webkit-scrollbar-thumb {
   background-color: rgba(255,255,255,0.2);
   border-radius: 20px;
   border: 1px solid #bf1343;
 }
 
-.scroll::-webkit-scrollbar-track:hover {
+.scrollList::-webkit-scrollbar-track:hover {
   background: rgba(255,255,255,0.4);
 }
 
-.scroll::-webkit-scrollbar-thumb:hover {
+.scrollList::-webkit-scrollbar-thumb:hover {
   background-color: rgba(191,19,67, 0.8);
   border: 1px solid white;
 }
@@ -71,6 +80,8 @@ main.mainCont {
   flex-direction: row;
   justify-content: center;
   flex-wrap: nowrap;
+  height: 12%;
+  padding-left: 0;
 }
 
 .labelItem {
@@ -85,6 +96,9 @@ main.mainCont {
   padding-left: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .quantity {
@@ -157,15 +171,21 @@ main.mainCont {
 }
 
 .mainCont h3 {
-  margin-left: 5%;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 0px;
   font-size: 1.3em;
   color: #bf1343;
+
 }
 
 .addIng {
   list-style: none;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  padding-left: 0;
+  margin-left: -8%;
 }
 
 .addIng label {
@@ -187,23 +207,45 @@ main.mainCont {
   font-weight: 700;
 }
 
+.addIng button:disabled {
+  background-color:rgba(128,128,128,0.4);
+}
+
+.addIng button:disabled:hover {
+  box-shadow: none;
+  background-color:rgba(128,128,128,0.4);
+  border: 2px solid black;
+  color: black;
+  cursor: not-allowed;
+}
+
 .addIng input {
   background-color: rgba(191,19,67, 0.3);
   color: black;
 }
 
+.addIng input[name="fridgeNameInput"] {
+  width: 240px;
+}
+
+.addIng input[name="fridgeQuantityInput"] {
+  width: 80px;
+}
+
 button.save {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.12), 0 5px 18px 0 rgba(0,0,0,0.24);
-  background-color: rgba(191,19,67, 0.8);
+  background-color: rgba(191,19,67, 1);
   border: 1px solid black;
   color: black;
   cursor: pointer;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
-  padding: 7px 30px;
+  padding: 5px 0;
+  width: 16%;
   transform: translate(-50%, -50%);
-  margin-left: 50%;
-  margin-top: 2.5%;
+  position: absolute;
+  left: 50%;
+  bottom: -1%;
 }
 
 button.save:hover {
