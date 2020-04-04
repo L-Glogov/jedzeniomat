@@ -1,0 +1,280 @@
+main.mainCont {
+  position: absolute;
+  left: 60%;
+  top: 65%;
+  transform: translate(-50%, -50%);
+  height: 56%;
+  width: 58%;
+  border-radius: 10px;
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* First, "Edit" Container: */
+
+div.editCont {
+  background-color: rgba(255,255,255,0.7);
+  height: 100%;
+  width: 32%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.editCont h2, .editCont h3 {
+  color: #bf1343;
+  margin-bottom: 10px;
+}
+
+div.dateNum {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.date, .numDay {
+  display: flex;
+  flex-direction: column;
+}
+
+.datePicker {
+  width:  100%;
+  background-color: rgba(191,19,67, 0.3);
+  font-size: 1em;
+}
+
+.date {
+  width: 48%;
+}
+
+.numDay {
+  width: 28%;
+}
+
+.numDay input {
+  width: 100%;
+  background-color: rgba(191,19,67, 0.3);
+  font-size: 1em;
+}
+
+.recList {
+  overflow-y: scroll;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #bf1343 rgba(255,255,255,0.2);
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  width: 95%;
+}
+
+.recRow {
+  display: flex;
+  flex-direction: row;
+  padding-left: 5px;
+}
+
+.recRow p {
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 80%;
+}
+
+.recRow button {
+  background-color: rgba(255,255,255,0.7);
+  border: 1px solid black;
+  border-radius: 4px;
+  color: rgba(191,19,67, 1);;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  height: 20px;
+  margin-bottom: 2px;
+  padding: 2px 6px;
+}
+
+.recRow button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.67);
+  background-color: rgba(191,19,67,0.8);
+  border: 1px solid white;
+  color: black;
+}
+
+.addRec {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.addRec select {
+  background-color: rgba(191,19,67, 0.3);
+  color: black;
+  font-size: 1em;
+  width: 50%;
+  margin-left: 6px;
+  margin-right: 4px;
+}
+
+.addRec input {
+  width: 40px;
+  background-color: rgba(191,19,67, 0.3);
+  color: black;
+  font-size: 1em;
+}
+
+.addRec label {
+  margin-right: 5px;
+}
+
+.addRec button {
+  background-color: rgba(255,255,255,0.7);
+  border: 1px solid black;
+  border-radius: 4px;
+  color: rgba(191,19,67, 1);;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  height: 24px;
+  margin-left: 3px;
+}
+
+div.chooseDayBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.chooseDayBox button {
+  background-color: rgba(255,255,255,0.7);
+  border: 1px solid black;
+  border-radius: 4px;
+  color: rgba(191,19,67, 1);;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  width: 40%;
+  height: 28px;
+  margin-top: 6%;
+}
+
+div.chooseDay {
+  width: 40%;
+}
+
+.chooseDay select {
+  background-color: rgba(191,19,67, 0.3);
+  color: black;
+  font-size: 1em;
+  width: 100%;
+}
+
+/* Middle, "Show" Container: */
+
+div.showCont {
+  background-color: rgba(255,255,255,0.7);
+  height: 100%;
+  width: 32%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.showCont h2, .showCont h3 {
+  color: #bf1343;
+}
+
+div.dayList {
+  overflow-y: scroll;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #bf1343 rgba(255,255,255,0.2);
+  height: 70%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dayList ul {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Last, "Shopping-List" Container: */
+
+div.shoppingCont {
+  background-color: rgba(255,255,255,0.7);
+  height: 100%;
+  width: 32%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.shoppingCont h2 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: #bf1343;
+}
+
+.shoppingCont h3 {
+  color: #bf1343;
+  margin-left: 2%;
+  margin-bottom: 0;
+}
+
+.shoppingCont ul {
+  list-style: none;
+  padding-left: 20px;
+  width: 95%;
+}
+
+ul.suppShopList {
+  height: 40%;
+  overflow-y: scroll;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #bf1343 rgba(255,255,255,0.2);
+}
+
+ul.fullShopList {
+  height: 40%;
+  overflow-y: scroll;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #bf1343 rgba(255,255,255,0.2);
+}
+
+/* Add scroll */
+
+/* .scrollList::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scrollList::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.2);
+}
+
+.scrollList::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 20px;
+  border: 1px solid #bf1343;
+}
+
+.scrollList::-webkit-scrollbar-track:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+.scrollList::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(191,19,67, 0.8);
+  border: 1px solid white;
+} */

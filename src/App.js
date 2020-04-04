@@ -49,10 +49,10 @@ class App extends Component {
     },
     menuInternal: {
       menuNumPortInput: 1,
-      menuRecSelect: '--Wybierz przepis--',
+      menuRecSelect: 'Wybierz przepis',
       currentDay: 1
     },
-    currentDisplay: 'recipes',
+    currentDisplay: 'menu',
     shouldLoadExtData: true
   }
 
@@ -354,7 +354,7 @@ saveData = () => {
   
   menuAddRecHandler = () => {
     this.setState((prevState) => {
-      if (prevState.menuInternal.menuRecSelect === '--Wybierz przepis--') {
+      if (prevState.menuInternal.menuRecSelect === 'Wybierz przepis') {
         return alert("Wybierz przepis!");
       }
       const updatedState = {...prevState};

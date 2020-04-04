@@ -59,7 +59,11 @@ const Recipes = ( props ) => {
           : props.internals.chosenRecipe}
         </h2>
         <div className={styles.ing}>
-          <h3>Składniki</h3>
+          <h3>
+            {props.internals.chosenRecipe === '' 
+            && props.internals.addRecipeToggle === false 
+            && props.internals.editRecipeToggle === false ? '' : 'Składniki'}
+          </h3>
           {props.internals.addRecipeToggle  
           ? <AddIngredients 
               internals={props.internals} 
@@ -71,7 +75,11 @@ const Recipes = ( props ) => {
           : <ul className={styles.ingList} >{ingredientList}</ul>}
         </div>
         <div className={styles.instr}>
-          <h3>Przygotowanie</h3>
+          <h3>
+            {props.internals.chosenRecipe === '' 
+            && props.internals.addRecipeToggle === false 
+            && props.internals.editRecipeToggle === false ? '' : 'Przygotowanie'}
+          </h3>
           {props.internals.addRecipeToggle  
           ? <div className={styles.instInputs}>
               <textarea 

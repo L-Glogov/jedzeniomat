@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import styles from './Menu.module.css';
 import DatePicker, { registerLocale }  from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns';
@@ -10,11 +11,10 @@ const Menu = ( props ) => {
   const dayInd = props.menu.recipes.findIndex(item => item.dayNum === props.internals.currentDay);
   const recipeList = props.menu.recipes[dayInd].recList.map((item, index) => {
     return (
-      <tr key={item.name + index}>
-        <td>{item.name}</td>
-        <td>{item.portions}</td>
-        <td><button onClick={props.rmvRec.bind(this, index, dayInd)}>X</button></td>
-      </tr>
+      <div className={styles.recRow} key={item.name + index}>
+        <p>{item.name} dla {item.portions}{' \u00a0'}<i class="fas fa-male"></i></p>
+        <button onClick={props.rmvRec.bind(this, index, dayInd)}>Usuń</button>
+      </div>
     )
   })
   
@@ -40,14 +40,14 @@ const Menu = ( props ) => {
   const fullList = props.menu.recipes.map(item => {
     const recList = item.recList.map((recipe, index) => {
       return (
-        <li key={recipe.name + index}>{recipe.name} dla {recipe.portions}</li>
+        <li key={recipe.name + index}>{recipe.name} dla {recipe.portions}{' \u00a0'}<i class="fas fa-male"></i></li>
       )
     })
     return (
       <div key={item.dayNum}>
         <h3>{format(item.date, "do LLL y",{locale: pl})}</h3>
         <ul>
-          {recList}
+          {recList.length === 0 ? <li>Dodaj przepisy.</li> : recList}
         </ul>
       </div>
     )
@@ -78,7 +78,6 @@ const Menu = ( props ) => {
     )
   })
 
-  
   const suppShoppingList = [...shopListArr]
     .map(item => {
       const fridgeIng = props.supplies.find(ing => ing.name === item.name);
@@ -95,80 +94,77 @@ const Menu = ( props ) => {
 
 
   return (
-    <Fragment>
-      <label>Data rozpoczęcia:</label>
-      <DatePicker 
-        selected={props.menu.startDate} 
-        onChange={props.dateChg}
-        locale="pl" 
-      />
-      <label>Liczba dni:</label>
-      <input 
-        type="number" 
-        min="1"
-        onChange={props.numDaysChg} 
-        value={props.menu.numDays}  
-      /> 
-      <div>
+    <main className={styles.mainCont}>  
+      <div className={styles.editCont}>
         <h2>Wybrany Dzień</h2>
-        <h2>{chosenDay}</h2>
-        <table>
-          <thead>
-            <tr>
-              <td>Przepis</td>
-              <td>Porcje</td>
-              <td>Usuń</td>
-            </tr>
-          </thead>
-          <tbody>
-            {recipeList}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>
-                <select onChange={props.inputHandler} name="menuRecSelect"  value={props.internals.menuRecSelect}>
-                  <option disabled>--Wybierz przepis--</option>
-                  {recipeOptionList}
-                </select>
-              </td>
-              <td>
-                <label htmlFor="menuNumPortInput">Porcje: </label>
-                <input
-                type="number" 
-                name="menuNumPortInput" 
-                id="menuNumPortInput"
-                min="1"
-                onChange={props.inputHandler} 
-                value={props.internals.menuNumPortInput}  
-                />
-              </td>
-              <td>
-                <button onClick={props.addRec}>Dodaj</button>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-        <button onClick={props.nextDay}>Next Day</button>
-        <label htmlFor="menuSelectDay">Wybierz dzień:</label>
-        <select onChange={props.goToDay} name="menuSelectDay" value={props.internals.currentDay} id="menuSelectDay">
-          {dayList}
-        </select>
+        <div className={styles.dateNum}>
+          <div className={styles.date}>
+            <label>Data rozpoczęcia:</label>
+            <DatePicker 
+              selected={props.menu.startDate} 
+              onChange={props.dateChg}
+              locale="pl"
+              className={styles.datePicker} 
+            />
+          </div>
+          <div className={styles.numDay}>
+            <label>Liczba dni:</label>
+            <input 
+              type="number" 
+              min="1"
+              onChange={props.numDaysChg} 
+              value={props.menu.numDays}  
+            /> 
+          </div>     
+        </div>
+        <h3>{chosenDay}</h3>
+        <div className={styles.recList}>
+          {recipeList}
+        </div>
+        <div className={styles.addRec}>
+          <select onChange={props.inputHandler} name="menuRecSelect"  value={props.internals.menuRecSelect}>
+            <option disabled>Wybierz przepis</option>
+            {recipeOptionList}
+          </select>
+          <label htmlFor="menuNumPortInput">Dla:</label>
+          <input
+            type="number" 
+            name="menuNumPortInput" 
+            id="menuNumPortInput"
+            min="1"
+            onChange={props.inputHandler} 
+            value={props.internals.menuNumPortInput}  
+          />
+          <button onClick={props.addRec}>Dodaj</button>
+        </div>
+        <div className={styles.chooseDayBox}>
+          <button onClick={props.nextDay}>Kolejny dzień</button>
+          <div className={styles.chooseDay}>
+            <label htmlFor="menuSelectDay">Wybierz dzień:</label>
+            <select onChange={props.goToDay} name="menuSelectDay" value={props.internals.currentDay} id="menuSelectDay">
+              {dayList}
+            </select>
+          </div>   
+        </div>
       </div>
-      <div>
-        {fullList}
+      <div className={styles.showCont}>
+        <h2>Menu</h2>
+        <div className={styles.dayList}>
+          {fullList}
+        </div>
       </div>
-      <div>
+      <div className={styles.shoppingCont}>
         <h2>Lista zakupów:</h2>
         <h3>Brakujące produkty:</h3>
-        <ul>
-          {suppShoppingList}
+        <ul className={styles.suppShopList}>
+          {suppShoppingList.length === 0 ? <li>Niczego nie brakuje.</li> : suppShoppingList}
         </ul>
         <h3>Pełna lista:</h3>
-        <ul>
-          {fullShoppingList}
+        <ul className={styles.fullShopList}>
+          {fullShoppingList.length === 0 ? <li>Nic nie potrzeba.</li> : fullShoppingList}
         </ul>
       </div>
-    </Fragment>
+    </main>
   )
 }
 
