@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import selectContext from '../../context/selectContext';
+import styles from './SelectUnit.module.css';
 
 const SelectUnit = ( props ) => {
   
@@ -11,8 +12,12 @@ const SelectUnit = ( props ) => {
   })
 
   return (
-    <select onChange={props.inputHandler} name="selectUnitInput" value={props.selectUnitInput}>
-      {unitList}
+    <select 
+      onChange={props.inputHandler} 
+      name="selectUnitInput" 
+      value={props.selectUnitInput}
+      className={styles.selectUnit}>
+        {unitList}
     </select>
   )
 }

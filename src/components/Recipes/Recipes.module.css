@@ -3,10 +3,9 @@ main.mainCont {
   left: 60%;
   top: 65%;
   transform: translate(-50%, -50%);
-  height: 50%;
-  width: 55%;
+  height: 56%;
+  width: 58%;
   border-radius: 10px;
-  padding: 20px;
   font-family: 'Lato', sans-serif;
   display: flex;
   flex-direction: row;
@@ -16,19 +15,284 @@ main.mainCont {
 div.recListCont {
   background-color: rgba(255,255,255,0.7);
   height: 100%;
-  width: 45%;
+  width: 49%;
   border-radius: 10px;
-  padding: 20px;
-  margin: -20px 0 0 -20px;
-  float: right;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 div.recShowCont {
   background-color: rgba(255,255,255,0.7);
   height: 100%;
-  width: 45%;
+  width: 49%;
   border-radius: 10px;
-  padding: 20px; 
-  margin-top: -20px;
-  margin-right: -20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.recListCont h2 {
+  color: #bf1343;
+  margin-bottom: 0;
+}
+
+ul.recList {
+  list-style: none;
+  width: 90%;
+  height: 70%;
+  margin: auto;
+  overflow-y: scroll;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #bf1343 rgba(255,255,255,0.2);
+}
+
+li.recRow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 90%;
+  padding: 10px 0px;
+  margin-top: 5px;
+  background-color: rgba(191,19,67, 0.8);
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+li.recRow:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.67);
+  background-color: rgba(191,19,67,0.9);
+}
+
+.recListCont button {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.12), 0 5px 18px 0 rgba(0,0,0,0.24);
+  background-color: rgba(255,255,255,0.7);
+  border: 1px solid black;
+  border-radius: 4px;
+  color: rgba(191,19,67, 1);;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  padding: 5px 0;
+  width: 36%;
+  margin-bottom: 10px;
+}
+
+.recListCont button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.67);
+  background-color: rgba(191,19,67,0.8);
+  border: 1px solid white;
+  color: black;
+}
+
+.recShowCont h2 {
+  text-align: center;
+  color: #bf1343;
+}
+
+.recShowCont h2 input {
+  background-color: rgba(191,19,67, 0.3);
+  color: black;
+  font-size: 1em;
+}
+
+.ing {
+  margin-left: 30px;
+  color: black;
+}
+
+ul.ingList {
+  height: 12vh;
+  width: 90%;
+  overflow-y: scroll;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #bf1343 rgba(255,255,255,0.2);
+  list-style: none;
+  padding-left: 20px;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+
+.ing h3 {
+  color: #bf1343;
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+
+ul.ingList li {
+  margin: 3px 0;
+}
+
+.instr {
+  margin-left: 30px;
+  color: black;
+}
+
+.instr h3 {
+  color: #bf1343;
+  margin-top: 14px;
+  margin-bottom: 5px;
+}
+
+div.insCont {
+  height: 17vh;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-end;
+}
+
+div.insText {
+  width: 90%;
+  padding-left: 20px;
+  overflow-y: scroll;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #bf1343 rgba(255,255,255,0.2);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.insText p {
+  margin-top: 0;
+  overflow: hidden;
+  text-align: start;
+}
+
+p.insPort {
+  color: #bf1343;
+  font-weight: 700;
+  margin: auto;
+  text-align: start;
+  margin: 10px 0 0 0;
+  position: absolute;
+  bottom: 15px;
+  width: 40%;
+}
+
+div.recFoot {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 5px;
+  width: 46%;
+}
+
+.recFoot button {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.12), 0 5px 18px 0 rgba(0,0,0,0.24);
+  background-color: rgba(255,255,255,0.7);
+  border: 1px solid black;
+  border-radius: 4px;
+  color: rgba(191,19,67, 1);;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  padding: 5px 0;
+  width: 12%;
+  margin-bottom: 2px;
+  margin-right: 10px;
+}
+
+.recFoot button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.67);
+  background-color: rgba(191,19,67,0.8);
+  border: 1px solid white;
+  color: black;
+}
+
+div.instInputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.instr h3 {
+  margin-top: 0;
+}
+
+.instInputs textarea {
+  width: 92%;
+  border: 1px solid #bf1343;
+  background-color: rgba(191,19,67, 0.1);
+  font-family: 'Lato', sans-serif;
+  resize: none;
+  height: 10vh;
+  scrollbar-width: thin;
+  scrollbar-color: #bf1343 rgba(255,255,255,0.2);
+}
+
+.portDiv {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row nowrap;
+  margin-top: 5px;
+}
+
+.portDiv label {
+  width: 100px;
+}
+
+.instInputs input[name="newRecipePortInput"] {
+  background-color: rgba(191,19,67, 0.3);
+  color: black;
+  font-size: 1em;
+  width: 80px;
+}
+
+.saveDiv {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row nowrap;
+  margin-top: 5px;
+  justify-content: space-around;
+}
+
+.saveDiv button {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.12), 0 5px 18px 0 rgba(0,0,0,0.24);
+  background-color: rgba(255,255,255,0.7);
+  border: 1px solid black;
+  border-radius: 4px;
+  color: rgba(191,19,67, 1);;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  padding: 5px 0;
+  width: 36%;
+}
+
+.saveDiv button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.67);
+  background-color: rgba(191,19,67,0.8);
+  border: 1px solid white;
+  color: black;
+}
+
+/* Scrollbar features: */
+
+.recList::-webkit-scrollbar, ul.ingList::-webkit-scrollbar, div.insText::-webkit-scrollbar, .instInputs textarea::-webkit-scrollbar {
+  width: 12px;
+}
+
+.recList::-webkit-scrollbar-track, ul.ingList::-webkit-scrollbar-track, div.insText::-webkit-scrollbar-track, .instInputs textarea::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.2);
+}
+
+.recList::-webkit-scrollbar-thumb, ul.ingList::-webkit-scrollbar-thumb, div.insText::-webkit-scrollbar-thumb, .instInputs textarea::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 20px;
+  border: 1px solid #bf1343;
+}
+
+.recList::-webkit-scrollbar-track:hover, ul.ingList::-webkit-scrollbar-track:hover, div.insText::-webkit-scrollbar-track:hover, .instInputs textarea::-webkit-scrollbar-track:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+.recList::-webkit-scrollbar-thumb:hover, ul.ingList::-webkit-scrollbar-thumb:hover, div.insText::-webkit-scrollbar-thumb:hover, .instInputs textarea::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(191,19,67, 0.8);
+  border: 1px solid white;
 }

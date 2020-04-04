@@ -6,15 +6,9 @@ const Recipes = ( props ) => {
 
   const recipeNames = props.recipeList.map((item, index) => {
     return (
-      <tr key={item.name}>
-        <td onClick={props.recipeChoose.bind(this, index)}>{item.name}</td>
-        <td>
-          <button onClick={props.modify.bind(this, index)}>modify symbol</button>
-        </td>
-        <td>
-          <button onClick={props.remove.bind(this, index)}>X</button>
-        </td>
-      </tr>
+      <li onClick={props.recipeChoose.bind(this, index)} key={item.name} className={styles.recRow}>
+        {item.name}
+      </li>
     )
   })
 
@@ -23,32 +17,33 @@ const Recipes = ( props ) => {
   let instructions;
   if (recipeInd >= 0) {
     ingredientList = props.recipeList[recipeInd].ingredients.map((item) => {
+      const name = item.name.length > 20 ? item.name.slice(0, 21).concat('...	\u00a0 \u00a0 \u00a0') : item.name.concat(': \u00a0');
       return (
-        <li key={item.name}>{item.name}: {item.quantity} {item.unit}</li>
+        <li key={item.name}>{name} {item.quantity} {item.unit}</li>
       )
     })
-    instructions = <div>
-      <p>{props.recipeList[recipeInd].instructions}</p>
-      <p>Liczba porcji: {props.recipeList[recipeInd].portions}</p>
+
+    instructions = <div className={styles.insCont}>
+      <div className={styles.insText}>
+        <p>{props.recipeList[recipeInd].instructions}</p>
+      </div>
+      <p className={styles.insPort}>Liczba porcji: {props.recipeList[recipeInd].portions}</p>
+      <div className={styles.recFoot}>
+        <button onClick={props.modify.bind(this, recipeInd)}>Edytuj</button>
+        <button onClick={props.remove.bind(this, recipeInd)}>Usuń</button>
+      </div>
     </div>
+
+
   }
 
   return (
     <main className={styles.mainCont}>
       <div className={styles.recListCont}>
         <h2>Lista przepisów</h2>
-        <table>
-          <thead>
-            <tr>
-             <th>Nazwa</th>
-             <th>Edytuj</th>
-             <th>Usuń</th> 
-            </tr>
-          </thead>
-          <tbody>
-            {recipeNames}
-          </tbody>
-        </table>
+        <ul className={styles.recList}>
+          {recipeNames}
+        </ul>
         <button onClick={props.addNew}>Dodaj przepis</button>
       </div>
       <div className={styles.recShowCont}>
@@ -58,44 +53,50 @@ const Recipes = ( props ) => {
               type="text" 
               name="newRecipeNameInput" 
               onChange={props.inputHandler} 
-              value={props.internals.newRecipeNameInput} 
+              value={props.internals.newRecipeNameInput}
+              placeholder="Nazwa" 
             /> 
           : props.internals.chosenRecipe}
         </h2>
-        <div>
+        <div className={styles.ing}>
           <h3>Składniki</h3>
           {props.internals.addRecipeToggle  
           ? <AddIngredients 
               internals={props.internals} 
               addRecipeIng={props.addRecipeIng}
+              modifyIng={props.modifyIng}
               inputHandler={props.inputHandler} 
               rmvIng = {props.rmvIng}  
             />
-          : <ul>{ingredientList}</ul>}
+          : <ul className={styles.ingList} >{ingredientList}</ul>}
         </div>
-        <div>
-        <h3>Przygotowanie</h3>
-        {props.internals.addRecipeToggle  
-        ? <div>
-            <textarea 
-              placeholder="Tu wpisz instrukcje przygotowania." 
-              name="tempAddInst" 
-              value={props.internals.tempAddInst} 
-              onChange={props.inputHandler}
-            />
-            <label htmlFor="recPortInput">Liczba porcji:</label>
-            <input 
-              type="number" 
-              name="newRecipePortInput" 
-              onChange={props.inputHandler} 
-              value={props.internals.newRecipePortInput} 
-              id="recPortInput"
-            />
-            <button onClick={props.save}>Zapisz</button>
-            <button onClick={props.discard}>Odrzuć zmiany</button>
-          </div>
-        : instructions}
-      </div>
+        <div className={styles.instr}>
+          <h3>Przygotowanie</h3>
+          {props.internals.addRecipeToggle  
+          ? <div className={styles.instInputs}>
+              <textarea 
+                placeholder="Tu wpisz instrukcje przygotowania." 
+                name="tempAddInst" 
+                value={props.internals.tempAddInst} 
+                onChange={props.inputHandler}
+              />
+              <div className={styles.portDiv}>
+                <label htmlFor="recPortInput">Liczba porcji:</label>
+                <input 
+                  type="number" 
+                  name="newRecipePortInput" 
+                  onChange={props.inputHandler} 
+                  value={props.internals.newRecipePortInput} 
+                  id="recPortInput"
+                />
+              </div>
+              <div className={styles.saveDiv}>
+                <button onClick={props.save}>Zapisz</button>
+                <button onClick={props.discard}>Odrzuć zmiany</button>
+              </div>
+            </div>
+          : instructions}
+        </div>
       </div>
       {/* <button onClick={props.saveData}>Zapisz zmiany</button> */}
     </main>

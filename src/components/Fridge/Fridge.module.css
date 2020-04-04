@@ -139,7 +139,7 @@ main.mainCont {
 .addRem button:hover, .modify button:hover, .rem button:hover, .addIng button:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3), 0 6px 20px 0 rgba(0,0,0,0.44);
   background-color: rgba(191,19,67, 0.8);
-  border: 2px solid black;
+  border: 1px solid black;
   color: black;
   cursor: pointer;
 }
@@ -205,6 +205,7 @@ main.mainCont {
   color: black;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
+  padding: 3px 8px;
 }
 
 .addIng button:disabled {
@@ -214,7 +215,7 @@ main.mainCont {
 .addIng button:disabled:hover {
   box-shadow: none;
   background-color:rgba(128,128,128,0.4);
-  border: 2px solid black;
+  border: 1px solid black;
   color: black;
   cursor: not-allowed;
 }

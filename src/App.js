@@ -73,7 +73,7 @@ componentDidMount() {
   }
 }
 
-saveDataHandler = () => {
+saveData = () => {
   const post = {
     "recipes": this.state.recipes,
     "fridge": this.state.fridge
@@ -164,6 +164,7 @@ saveDataHandler = () => {
       updatedState.recipes.splice(index, 1);
       return updatedState;
     })
+    this.saveData();
   }
 
   recipesChooseHandler = (index) => {
@@ -199,6 +200,17 @@ saveDataHandler = () => {
   recipesRemoveIngHandler = (index) => {
     this.setState((prevState) => {
       const updatedState = {...prevState};
+      updatedState.recipesInternal.tempAddIngs.splice(index, 1);
+      return updatedState;
+    })
+  }
+
+  recipesModifyIngHandler = (index, name, quantity, unit) => {
+    this.setState((prevState) => {
+      const updatedState = {...prevState};
+      updatedState.recipesInternal.addRecIngNameInput = name;
+      updatedState.recipesInternal.addRecIngQuantityInput = quantity;
+      updatedState.recipesInternal.selectUnitInput = unit;
       updatedState.recipesInternal.tempAddIngs.splice(index, 1);
       return updatedState;
     })
@@ -272,6 +284,7 @@ saveDataHandler = () => {
       });
       return this.recipesClearChangesAux(updatedState);
     })
+    this.saveData();
   }
 
   recipesDiscardHandler = () => {
@@ -404,7 +417,7 @@ saveDataHandler = () => {
                 remove={this.fridgeRemoveHandler}
                 addItem={this.fridgeAddItemHandler}
                 inputHandler={this.fridgeInputHandler}
-                saveData={this.saveDataHandler}
+                saveData={this.saveData}
               /> : null
             }
             {(this.state.currentDisplay === "recipes") ? 
@@ -415,12 +428,13 @@ saveDataHandler = () => {
                 modify={this.recipesModifyHandler}
                 recipeChoose={this.recipesChooseHandler}
                 addRecipeIng={this.recipesAddIngHandler}
+                modifyIng={this.recipesModifyIngHandler}
                 inputHandler={this.recipesInputHandler}
                 rmvIng={this.recipesRemoveIngHandler}
                 addNew={this.recipesAddNewToggle}
                 save={this.recipesSaveHandler}
                 discard={this.recipesDiscardHandler}
-                saveData={this.saveDataHandler}
+                saveData={this.saveData}
               /> : null
             }
             {(this.state.currentDisplay === "menu") ? 
