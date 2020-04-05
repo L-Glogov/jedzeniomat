@@ -56,34 +56,69 @@ class App extends Component {
     shouldLoadExtData: true
   }
 
-componentDidMount() {
-  if (this.state.shouldLoadExtData) {
-    Axios.get('http://localhost:3000/db-state')
-      .then(res => {
-        this.setState({
-          recipes: res.data.recipes,
-          fridge: res.data.fridge,
-          shouldLoadExtData: false
+  componentDidMount() {
+    if (this.state.shouldLoadExtData) {
+      Axios.get('http://localhost:3000/db-state')
+        .then(res => {
+          this.setState({
+            recipes: res.data.recipes,
+            fridge: res.data.fridge,
+            shouldLoadExtData: false
+          })
         })
-      })
-      .catch(error => {
-        console.error(error); 
-        alert("Network error: The database failed to load.");
-      }) 
-  }
-}
+        .catch(error => {
+          console.error(error); 
+          alert("Network error: The database failed to load.");
+        }) 
+    }
 
-saveData = () => {
-  const post = {
-    "recipes": this.state.recipes,
-    "fridge": this.state.fridge
+    const post = {
+      "menuList": [],
+    }
+
+    Axios.post('http://localhost:3000/menu', post)
+      .catch(error => {
+        console.error(error);
+        alert("Network error: Failed to save data to database");
+      })
   }
-  Axios.post('http://localhost:3000/db-state', post)
-    .catch(error => {
-      console.error(error);
-      alert("Network error: Failed to save data to database");
-    })
-}
+
+  // ----------Multi-Component Methods--------------
+
+  saveData = () => {
+    const post = {
+      "recipes": this.state.recipes,
+      "fridge": this.state.fridge
+    }
+    Axios.post('http://localhost:3000/db-state', post)
+      .catch(error => {
+        console.error(error);
+        alert("Network error: Failed to save data to database");
+      })
+  }
+
+  saveUpdatedStateData = (updatedState) => {
+    const post = {
+      "recipes": updatedState.recipes,
+      "fridge": updatedState.fridge
+    }
+    Axios.post('http://localhost:3000/db-state', post)
+      .catch(error => {
+        console.error(error);
+        alert("Network error: Failed to save data to database");
+      })
+  }
+
+  savePDFData = (updatedState) => {
+    const post = {
+      "menuList": updatedState.menu.recipes
+    }
+    Axios.post('http://localhost:3000/menu', post)
+      .catch(error => {
+        console.error(error);
+        alert("Network error: Failed to save data to database");
+      })
+  }
 
   // ----------Fridge Methods--------------
 
@@ -162,9 +197,9 @@ saveData = () => {
     this.setState((prevState) => {
       const updatedState = {...prevState};
       updatedState.recipes.splice(index, 1);
+      this.saveUpdatedStateData(updatedState);
       return updatedState;
     })
-    this.saveData();
   }
 
   recipesChooseHandler = (index) => {
@@ -282,9 +317,9 @@ saveData = () => {
         ingredients: prevState.recipesInternal.tempAddIngs,
         instructions: prevState.recipesInternal.tempAddInst
       });
+      this.saveUpdatedStateData(updatedState);
       return this.recipesClearChangesAux(updatedState);
     })
-    this.saveData();
   }
 
   recipesDiscardHandler = () => {
@@ -306,7 +341,7 @@ saveData = () => {
     })
   }
 
-  menuDateHandler = (date) => {
+  menuDateHandler = async (date) => {
     this.setState(prevState => {
       const updatedState = {...prevState};
       updatedState.menu.startDate = date;
@@ -323,9 +358,11 @@ saveData = () => {
         });
       }
       updatedState.menuInternal.currentDay = 1;
+      this.savePDFData(updatedState);
       return updatedState;
     })
   }
+
 
   menuNumDaysHandler = (e) => {
     const value = parseInt(e.target.value);
@@ -347,7 +384,7 @@ saveData = () => {
         updatedState.menu.recipes.splice(value);
       }
       updatedState.menu.numDays = value;
-      
+      this.savePDFData(updatedState);
       return updatedState;
     })
   }
@@ -363,6 +400,7 @@ saveData = () => {
         name: prevState.menuInternal.menuRecSelect,
         portions: prevState.menuInternal.menuNumPortInput
       });
+      this.savePDFData(updatedState);
       return updatedState;
     })
   }
@@ -381,6 +419,7 @@ saveData = () => {
       if (prevState.menuInternal.currentDay < prevState.menu.numDays) {
         updatedState.menuInternal.currentDay++;
       }
+      this.savePDFData(updatedState);
       return updatedState;
     })
   }

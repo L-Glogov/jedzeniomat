@@ -66,32 +66,6 @@
         "instructions": "Wszystkie składniki umieścić w kielichu blendera i zmiksować na gładki koktajl."
       },
       {
-        "name": "Test",
-        "portions": 1,
-        "ingredients": [
-          {
-            "name": "FDASFSDF",
-            "quantity": 1,
-            "unit": "szt.",
-            "modifyAmount": 0
-          }
-        ],
-        "instructions": "fsdfasdf"
-      },
-      {
-        "name": "Test4",
-        "portions": 1,
-        "ingredients": [
-          {
-            "name": "TEST1234567891234567879123",
-            "quantity": 1,
-            "unit": "szt.",
-            "modifyAmount": 0
-          }
-        ],
-        "instructions": "sdasdas"
-      },
-      {
         "name": "Test2",
         "portions": 1,
         "ingredients": [
@@ -155,5 +129,8 @@
         "modifyAmount": 0
       }
     ]
+  },
+  "menu": {
+    "menuList": []
   }
 }

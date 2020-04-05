@@ -236,9 +236,6 @@ div.shoppingCont {
   list-style: none;
   padding-left: 20px;
   width: 95%;
-}
-
-ul.suppShopList {
   height: 40%;
   overflow-y: scroll;
   overflow-x: auto;
@@ -246,35 +243,25 @@ ul.suppShopList {
   scrollbar-color: #bf1343 rgba(255,255,255,0.2);
 }
 
-ul.fullShopList {
-  height: 40%;
-  overflow-y: scroll;
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #bf1343 rgba(255,255,255,0.2);
-}
-
-/* Add scroll */
-
-/* .scrollList::-webkit-scrollbar {
+.recListlList::-webkit-scrollbar, div.dayList::-webkit-scrollbar, .shoppingCont ul::-webkit-scrollbar {
   width: 12px;
 }
 
-.scrollList::-webkit-scrollbar-track {
+.recList::-webkit-scrollbar-track, div.dayList::-webkit-scrollbar-track, .shoppingCont ul::-webkit-scrollbar-track {
   background: rgba(255,255,255,0.2);
 }
 
-.scrollList::-webkit-scrollbar-thumb {
+.recList::-webkit-scrollbar-thumb, div.dayList::-webkit-scrollbar-thumb, .shoppingCont ul::-webkit-scrollbar-thumb {
   background-color: rgba(255,255,255,0.2);
   border-radius: 20px;
   border: 1px solid #bf1343;
 }
 
-.scrollList::-webkit-scrollbar-track:hover {
+.recList::-webkit-scrollbar-track:hover, div.dayList::-webkit-scrollbar-track:hover, .shoppingCont ul::-webkit-scrollbar-track:hover {
   background: rgba(255,255,255,0.4);
 }
 
-.scrollList::-webkit-scrollbar-thumb:hover {
+.recList::-webkit-scrollbar-thumb:hover, div.dayList::-webkit-scrollbar-thumb:hover, .shoppingCont ul::-webkit-scrollbar-thumb:hover {
   background-color: rgba(191,19,67, 0.8);
   border: 1px solid white;
-} */
+}

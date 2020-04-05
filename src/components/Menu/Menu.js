@@ -1,9 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styles from './Menu.module.css';
 import DatePicker, { registerLocale }  from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns';
 import { pl } from 'date-fns/locale';
+import { PDFDownloadLink} from '@react-pdf/renderer';
+import MyDoc from './ExportPDF';
+
 registerLocale("pl", pl);
 
 const Menu = ( props ) => {
@@ -73,6 +76,7 @@ const Menu = ( props ) => {
   
   const fullShoppingList = shopListArr.map(item => {
     const quantity = Math.ceil(item.quantity);
+    
     return (
       <li key={item.name}>{item.name}: {quantity} {item.unit}</li>
     )
@@ -163,7 +167,12 @@ const Menu = ( props ) => {
         <ul className={styles.fullShopList}>
           {fullShoppingList.length === 0 ? <li>Nic nie potrzeba.</li> : fullShoppingList}
         </ul>
+        <div>
+          <PDFDownloadLink document={<MyDoc />} fileName="somename.pdf">
+            {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+          </PDFDownloadLink>
       </div>
+      </div>     
     </main>
   )
 }
