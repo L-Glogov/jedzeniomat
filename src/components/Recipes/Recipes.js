@@ -106,7 +106,6 @@ const Recipes = ( props ) => {
           : instructions}
         </div>
       </div>
-      {/* <button onClick={props.saveData}>Zapisz zmiany</button> */}
     </main>
   )
 }

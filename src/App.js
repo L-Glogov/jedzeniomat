@@ -71,16 +71,6 @@ class App extends Component {
           alert("Network error: The database failed to load.");
         }) 
     }
-
-    const post = {
-      "menuList": [],
-    }
-
-    Axios.post('http://localhost:3000/menu', post)
-      .catch(error => {
-        console.error(error);
-        alert("Network error: Failed to save data to database");
-      })
   }
 
   // ----------Multi-Component Methods--------------
@@ -103,17 +93,6 @@ class App extends Component {
       "fridge": updatedState.fridge
     }
     Axios.post('http://localhost:3000/db-state', post)
-      .catch(error => {
-        console.error(error);
-        alert("Network error: Failed to save data to database");
-      })
-  }
-
-  savePDFData = (updatedState) => {
-    const post = {
-      "menuList": updatedState.menu.recipes
-    }
-    Axios.post('http://localhost:3000/menu', post)
       .catch(error => {
         console.error(error);
         alert("Network error: Failed to save data to database");
@@ -358,7 +337,6 @@ class App extends Component {
         });
       }
       updatedState.menuInternal.currentDay = 1;
-      this.savePDFData(updatedState);
       return updatedState;
     })
   }
@@ -384,7 +362,6 @@ class App extends Component {
         updatedState.menu.recipes.splice(value);
       }
       updatedState.menu.numDays = value;
-      this.savePDFData(updatedState);
       return updatedState;
     })
   }
@@ -400,7 +377,6 @@ class App extends Component {
         name: prevState.menuInternal.menuRecSelect,
         portions: prevState.menuInternal.menuNumPortInput
       });
-      this.savePDFData(updatedState);
       return updatedState;
     })
   }
@@ -419,7 +395,6 @@ class App extends Component {
       if (prevState.menuInternal.currentDay < prevState.menu.numDays) {
         updatedState.menuInternal.currentDay++;
       }
-      this.savePDFData(updatedState);
       return updatedState;
     })
   }

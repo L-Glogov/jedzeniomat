@@ -4,10 +4,11 @@ import DatePicker, { registerLocale }  from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns';
 import { pl } from 'date-fns/locale';
-import { PDFDownloadLink} from '@react-pdf/renderer';
-import MyDoc from './ExportPDF';
+import { saveAs } from 'file-saver';
+import * as docx from "docx";
 
 registerLocale("pl", pl);
+
 
 const Menu = ( props ) => {
 
@@ -56,6 +57,53 @@ const Menu = ( props ) => {
     )
   })
 
+  const fullMenuChildren = [
+    new docx.Paragraph({
+      children: [new docx.TextRun({
+        text: "Menu",
+        bold: true,
+        color: "bf1343",
+        size: 48
+      })],
+      heading: docx.HeadingLevel.HEADING_1,
+      alignment: docx.AlignmentType.CENTER,
+      spacing: {
+        line: 900
+      }     
+    })
+  ];
+  
+  props.menu.recipes.forEach(item => {
+    fullMenuChildren.push(
+      new docx.Paragraph({
+        children: [new docx.TextRun({
+          text: `${format(item.date, "do LLL y",{locale: pl})}`,
+          size: 32
+        })],
+        bullet: {
+          level: 0
+        },
+        spacing: {
+          before: 400,
+          after: 400
+        }
+      })
+    );
+    item.recList.forEach(recipe => {
+      fullMenuChildren.push(
+        new docx.Paragraph({
+          children: [new docx.TextRun({
+            text: `${recipe.name} dla ${recipe.portions}`,
+            size: 32
+          })],
+          bullet: {
+            level: 1
+          }
+        })
+      )
+    })
+  })
+
   const shopListArr = [];
   props.menu.recipes.forEach(item => {
     item.recList.forEach(recipe => {
@@ -82,13 +130,45 @@ const Menu = ( props ) => {
     )
   })
 
-  const suppShoppingList = [...shopListArr]
+  const fullShopChildren = [
+    new docx.Paragraph({
+      children: [new docx.TextRun({
+        text: "Potrzebne produkty",
+        bold: true,
+        color: "bf1343",
+        size: 48
+      })],
+      heading: docx.HeadingLevel.HEADING_1,
+      alignment: docx.AlignmentType.CENTER,
+      spacing: {
+        line: 900
+      }
+    })
+  ];
+  shopListArr.forEach((item => {
+    const quantity = Math.ceil(item.quantity);
+    fullShopChildren.push(
+      new docx.Paragraph({
+        children: [new docx.TextRun({
+          text: `${item.name}: ${quantity} ${item.unit}`,
+          size: 32
+        })],
+        bullet: {
+          level: 0
+        }
+      })
+    )
+  }))
+
+  const suppShoppingListPrim = shopListArr
     .map(item => {
       const fridgeIng = props.supplies.find(ing => ing.name === item.name);
       if (fridgeIng) {item.quantity -= fridgeIng.quantity}
       return item;
   })
-    .filter(item => item.quantity > 0)
+    .filter(item => item.quantity > 0);
+
+  const suppShoppingList = suppShoppingListPrim
     .map(item => {
       const quantity = Math.ceil(item.quantity);
       return (
@@ -96,7 +176,75 @@ const Menu = ( props ) => {
       )
     })
 
+  const suppShopChildren = [
+    new docx.Paragraph({
+      children: [new docx.TextRun({
+        text: "Brakujące produkty",
+        bold: true,
+        color: "bf1343",
+        size: 48
+      })],
+      heading: docx.HeadingLevel.HEADING_1,
+      alignment: docx.AlignmentType.CENTER,
+      spacing: {
+        line: 900
+      }
+    })
+  ];
+  suppShoppingListPrim.forEach(item => {
+    const quantity = Math.ceil(item.quantity);
+    suppShopChildren.push(
+      new docx.Paragraph({
+        children: [new docx.TextRun({
+          text: `${item.name}: ${quantity} ${item.unit}`,
+          size: 32
+        })],
+        bullet: {
+          level: 0
+        }
+      })
+    )
+  })
 
+  const generateDOCX = () => {
+    const doc = new docx.Document();
+    
+    doc.addSection({
+        headers: {
+          default: new docx.Header({
+            children: [new docx.Paragraph("Jedzeniomat")],
+        }),
+        },  
+        properties: {},
+          children: suppShopChildren         
+      });
+      doc.addSection({
+        headers: {
+          default: new docx.Header({
+            children: [new docx.Paragraph("Jedzeniomat")],
+        }),
+        },  
+        properties: {},
+          children: fullShopChildren         
+      });
+      doc.addSection({
+        headers: {
+          default: new docx.Header({
+            children: [new docx.Paragraph("Jedzeniomat")],
+        }),
+        },  
+        properties: {},
+          children: fullMenuChildren         
+      });
+
+    docx.Packer.toBlob(doc).then(blob => {
+      console.log(blob);
+      saveAs(blob, "menu.docx");
+      console.log("Document created successfully");
+    });
+  }
+
+ 
   return (
     <main className={styles.mainCont}>  
       <div className={styles.editCont}>
@@ -168,9 +316,8 @@ const Menu = ( props ) => {
           {fullShoppingList.length === 0 ? <li>Nic nie potrzeba.</li> : fullShoppingList}
         </ul>
         <div>
-          <PDFDownloadLink document={<MyDoc />} fileName="somename.pdf">
-            {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
-          </PDFDownloadLink>
+        <h3>DOCX browser Word document generation</h3>
+        <button type="button" onClick={generateDOCX}>Click to generate document</button>
         </div>
       </div>     
     </main>

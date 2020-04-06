@@ -243,7 +243,7 @@ div.shoppingCont {
   scrollbar-color: #bf1343 rgba(255,255,255,0.2);
 }
 
-.recListlList::-webkit-scrollbar, div.dayList::-webkit-scrollbar, .shoppingCont ul::-webkit-scrollbar {
+.recList::-webkit-scrollbar, div.dayList::-webkit-scrollbar, .shoppingCont ul::-webkit-scrollbar {
   width: 12px;
 }
 
