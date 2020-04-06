@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
-import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
-import Axios from 'axios';
-import logo from '../../assets/logo.png';
-import { render } from '@testing-library/react';
+import React from 'react';
+import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
 
-const stylesPDF = StyleSheet.create({
+const styles = StyleSheet.create({
   page: {
     flexDirection: 'row',
     backgroundColor: '#E4E4E4'
@@ -16,57 +13,18 @@ const stylesPDF = StyleSheet.create({
   }
 });
 
-class MyDoc extends Component {
-  
-  state = {
-    recipes: 'failed to laod data',
-    fridge: 'failed to load data',
-    menu: 'failed to load data'
-  }
-
-  componentDidMount() {
-    Axios.get('http://localhost:3000/db-state')
-      .then(res => {
-          this.setState({
-            recipes: res.data.recipes,
-            fridge: res.data.fridge
-          })         
-      })
-      .catch(error => {
-        console.error(error); 
-        alert("Network error: The pdf document failed to load.");
-      }) 
-
-    Axios.get('http://localhost:3000/menu')
-    .then(res => {
-        this.setState({
-          menu: res.data.menu
-        })
-    })
-    .catch(error => {
-      console.error(error); 
-      alert("Network error: The pdf document failed to load.");
-    }) 
-  }
-
-  render() {
-
-    return (
-    <Document>
-      <Page size="A4" style={stylesPDF.page}>
-        <View style={stylesPDF.section}>
-          <Text>{'test'}</Text>
-        </View>
-        <Image
-        src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Peck_Moby_Dick.jpg"
-      />
-        <View style={stylesPDF.section}>
-          <Text>Section #2</Text>
-        </View>
-      </Page>
-    </Document>
-  );
-  } 
-}
+const MyDoc = () => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <View style={styles.section}>
+        <Image src='https://raw.githubusercontent.com/L-Glogov/jedzeniomat/master/src/assets/logoColor.png' />
+        <Text>Section #1</Text>
+      </View>
+      <View style={styles.section}>
+        <Text>Section #2</Text>
+      </View>
+    </Page>
+  </Document>
+);
 
 export default MyDoc;

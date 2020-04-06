@@ -171,7 +171,7 @@ const Menu = ( props ) => {
           <PDFDownloadLink document={<MyDoc />} fileName="somename.pdf">
             {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
           </PDFDownloadLink>
-      </div>
+        </div>
       </div>     
     </main>
   )
