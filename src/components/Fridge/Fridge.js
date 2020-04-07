@@ -73,6 +73,7 @@ const Fridge = ( props ) => {
               name="fridgeNameInput" 
               onChange={props.inputHandler} 
               value={props.internals.fridgeNameInput}
+              maxLength="18"
           />
           </li>
           <li>

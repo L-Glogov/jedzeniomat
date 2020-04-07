@@ -41,13 +41,13 @@ div.dateNum {
 }
 
 .datePicker {
-  width:  100%;
+  width:  120px;
   background-color: rgba(191,19,67, 0.3);
   font-size: 1em;
 }
 
 .date {
-  width: 48%;
+  width: 45%;
 }
 
 .numDay {
@@ -55,7 +55,7 @@ div.dateNum {
 }
 
 .numDay input {
-  width: 100%;
+  width: 60%;
   background-color: rgba(191,19,67, 0.3);
   font-size: 1em;
 }
@@ -137,8 +137,15 @@ div.dateNum {
   cursor: pointer;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
-  height: 24px;
+  height: 28px;
   margin-left: 3px;
+}
+
+.addRec button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.67);
+  background-color: rgba(191,19,67,0.8);
+  border: 1px solid white;
+  color: black;
 }
 
 div.chooseDayBox {
@@ -158,7 +165,27 @@ div.chooseDayBox {
   font-weight: 700;
   width: 40%;
   height: 28px;
-  margin-top: 6%;
+  margin-top: 5%;
+}
+
+.chooseDayBox button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.67);
+  background-color: rgba(191,19,67,0.8);
+  border: 1px solid white;
+  color: black;
+}
+
+.chooseDayBox button:disabled {
+  background-color:rgba(128,128,128,0.4);
+  color: black;
+}
+
+.chooseDayBox button:disabled:hover {
+  box-shadow: none;
+  background-color:rgba(128,128,128,0.4);
+  border: 1px solid black;
+  color: black;
+  cursor: not-allowed;
 }
 
 div.chooseDay {
@@ -241,6 +268,34 @@ div.shoppingCont {
   overflow-x: auto;
   scrollbar-width: thin;
   scrollbar-color: #bf1343 rgba(255,255,255,0.2);
+}
+
+div.genDoc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.shoppingCont button {
+  background-color: rgba(255,255,255,0.7);
+  border: 1px solid black;
+  border-radius: 4px;
+  color: rgba(191,19,67, 1);;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  height: 28px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shoppingCont button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.67);
+  background-color: rgba(191,19,67,0.8);
+  border: 1px solid white;
+  color: black;
 }
 
 .recList::-webkit-scrollbar, div.dayList::-webkit-scrollbar, .shoppingCont ul::-webkit-scrollbar {

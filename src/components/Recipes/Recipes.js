@@ -1,5 +1,6 @@
 import React from 'react';
 import AddIngredients from './AddIngredients';
+import Modal from '../Auxiliary/Modal';
 import styles from './Recipes.module.css';
 
 const Recipes = ( props ) => {
@@ -30,7 +31,7 @@ const Recipes = ( props ) => {
       <p className={styles.insPort}>Liczba porcji: {props.recipeList[recipeInd].portions}</p>
       <div className={styles.recFoot}>
         <button onClick={props.modify.bind(this, recipeInd)}>Edytuj</button>
-        <button onClick={props.remove.bind(this, recipeInd)}>Usuń</button>
+        <button onClick={props.check}>Usuń</button>
       </div>
     </div>
 
@@ -39,6 +40,16 @@ const Recipes = ( props ) => {
 
   return (
     <main className={styles.mainCont}>
+      {props.internals.modalShown
+      ? <Modal>
+          <h2 className={styles.modalText}>Czy na pewno chcesz trwale usunąć przepis?</h2>
+          <br />
+          <br />
+          <div className={styles.modalAnsDiv}>
+            <p className={styles.modalText} onClick={props.remove.bind(this, recipeInd)}>Tak</p>
+            <p className={styles.modalText} onClick={props.check}>Nie</p>
+          </div>
+        </Modal> : null}
       <div className={styles.recListCont}>
         <h2>Lista przepisów</h2>
         <ul className={styles.recList}>
@@ -54,7 +65,8 @@ const Recipes = ( props ) => {
               name="newRecipeNameInput" 
               onChange={props.inputHandler} 
               value={props.internals.newRecipeNameInput}
-              placeholder="Nazwa" 
+              placeholder="Nazwa"
+              maxLength="22" 
             /> 
           : props.internals.chosenRecipe}
         </h2>

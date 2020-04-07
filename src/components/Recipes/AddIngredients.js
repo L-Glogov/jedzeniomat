@@ -32,6 +32,7 @@ const AddIngredients = ( props ) => {
             onChange={props.inputHandler} 
             value={props.internals.addRecIngNameInput}
             placeholder="Nazwa" 
+            maxLength="18"
           />
         </li>
         <li>

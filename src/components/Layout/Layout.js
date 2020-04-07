@@ -22,7 +22,7 @@ const Layout = ( props ) => {
 
   return (
     <div  style={backStyle}>
-      <img src={logo} alt="Jedzeniomat - logo" className={styles.logo} />
+      <img src={logo} alt="Jedzeniomat - logo" className={styles.logo} onClick={props.layoutDisplay.bind(this, "home")}/>
       <nav className={navStylesClass}>
         <ul>
           <li><button onClick={props.layoutDisplay.bind(this, "menu")} className={activeMenuBtn}>Jadłospis</button></li>

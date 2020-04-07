@@ -64,6 +64,7 @@ li.recRow {
 li.recRow:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.67);
   background-color: rgba(191,19,67,0.9);
+  cursor: pointer;
 }
 
 .recListCont button {
@@ -295,4 +296,30 @@ div.instInputs {
 .recList::-webkit-scrollbar-thumb:hover, ul.ingList::-webkit-scrollbar-thumb:hover, div.insText::-webkit-scrollbar-thumb:hover, .instInputs textarea::-webkit-scrollbar-thumb:hover {
   background-color: rgba(191,19,67, 0.8);
   border: 1px solid white;
+}
+
+/* --------Modal---------- */
+
+.modalText {
+  color: white;
+}
+
+h2.modalText {
+  text-align: center;
+}
+
+p.modalText {
+  font-size: 1.2em;
+}
+
+p.modalText:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modalAnsDiv {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
 }

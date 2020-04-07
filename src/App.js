@@ -35,6 +35,7 @@ class App extends Component {
       selectUnitInput: 'szt.',
       tempAddIngs: [],
       tempAddInst: '',
+      modalShown: false
     },
     menu: {
       startDate: new Date(),
@@ -52,7 +53,7 @@ class App extends Component {
       menuRecSelect: 'Wybierz przepis',
       currentDay: 1
     },
-    currentDisplay: 'menu',
+    currentDisplay: 'home',
     shouldLoadExtData: true
   }
 
@@ -73,6 +74,7 @@ class App extends Component {
     }
   }
 
+  
   // ----------Multi-Component Methods--------------
 
   saveData = () => {
@@ -162,6 +164,9 @@ class App extends Component {
           unit: this.state.fridgeInternal.selectUnitInput,
           modifyAmount: 0
         })
+        updatedState.fridgeInternal.fridgeNameInput = '';
+        updatedState.fridgeInternal.fridgeQuantityInput = '';
+        updatedState.fridgeInternal.selectUnitInput = "szt.";
         return updatedState;
       })
     }
@@ -172,11 +177,20 @@ class App extends Component {
 
   // ----------Recipes Methods --------------
 
+  recipesModalCheckToggle = () => {
+    this.setState(prevState => {
+      const updatedState = {...prevState};
+      updatedState.recipesInternal.modalShown = !prevState.recipesInternal.modalShown;
+      return updatedState;
+    })
+  }
+  
   recipesRemoveHandler = (index) => {
     this.setState((prevState) => {
       const updatedState = {...prevState};
       updatedState.recipes.splice(index, 1);
       this.saveUpdatedStateData(updatedState);
+      updatedState.recipesInternal.modalShown = !prevState.recipesInternal.modalShown;
       return updatedState;
     })
   }
@@ -206,6 +220,8 @@ class App extends Component {
           unit: this.state.recipesInternal.selectUnitInput,
           modifyAmount: 0
         })
+        updatedState.recipesInternal.addRecIngNameInput = '';
+        updatedState.recipesInternal.addRecIngQuantityInput = 1;
         return updatedState;
       })
     }
@@ -439,6 +455,7 @@ class App extends Component {
                 recipeList={this.state.recipes}
                 internals={this.state.recipesInternal}
                 remove={this.recipesRemoveHandler}
+                check={this.recipesModalCheckToggle}
                 modify={this.recipesModifyHandler}
                 recipeChoose={this.recipesChooseHandler}
                 addRecipeIng={this.recipesAddIngHandler}

@@ -6,6 +6,10 @@
   width: 20%;
 }
 
+img.logo:hover {
+  cursor: pointer;
+}
+
 .copy {
   position: absolute;
   bottom: 0px;

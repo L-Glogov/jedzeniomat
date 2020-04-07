@@ -2,125 +2,163 @@
   "db-state": {
     "recipes": [
       {
-        "name": "Koktajl Bananowy",
+        "name": "Sernik Klonowy",
+        "portions": "2",
         "ingredients": [
           {
-            "name": "banan",
-            "quantity": 1,
-            "unit": "szt."
+            "name": "TWARÓG MIELONY",
+            "quantity": 500,
+            "unit": "gram",
+            "modifyAmount": 0
           },
           {
-            "name": "płatki owsiane",
-            "quantity": 50,
-            "unit": "gram"
-          },
-          {
-            "name": "masło orzechowe",
-            "quantity": 15,
-            "unit": "gram"
-          },
-          {
-            "name": "ksylitol",
-            "quantity": 10,
-            "unit": "gram"
-          },
-          {
-            "name": "mleko",
+            "name": "ŚMIETANA 36%",
             "quantity": 250,
-            "unit": "ml"
-          }
-        ],
-        "portions": 1,
-        "instructions": "Składniki zmiksować na gładki koktajl w blenderze. Podawać najlepiej od razu po przygotowaniu"
-      },
-      {
-        "name": "Test2",
-        "portions": 1,
-        "ingredients": [
+            "unit": "ml",
+            "modifyAmount": 0
+          },
           {
-            "name": "TEST",
-            "quantity": 1,
+            "name": "JAJKA",
+            "quantity": 4,
             "unit": "szt.",
+            "modifyAmount": 0
+          },
+          {
+            "name": "SYROP KLONOWY",
+            "quantity": 250,
+            "unit": "ml",
+            "modifyAmount": 0
+          },
+          {
+            "name": "MĄKĄ GRAHAM",
+            "quantity": 180,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "MASŁO",
+            "quantity": 60,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "KSYLITOL",
+            "quantity": 120,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "CYNAMON",
+            "quantity": 50,
+            "unit": "gram",
             "modifyAmount": 0
           }
         ],
-        "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis ornare mauris. Nulla eu turpis sit amet nisl aliquet rhoncus. Vestibulum malesuada facilisis purus, at fermentum sem consequat et. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis quam nisi, gravida in congue ac, rutrum et ante. Vestibulum in metus metus. Praesent sapien felis, laoreet eu lectus rutrum, convallis congue nisi. Quisque condimentum urna elit, eget dictum neque pretium in. Phasellus semper eros a lectus sollicitudin eleifend. Donec ipsum erat, interdum ut commodo vitae, sodales nec orci.\n\nIn vestibulum dui quis nunc eleifend gravida. Donec eget tristique nisl. Maecenas sed vehicula nibh. Curabitur a varius turpis. Aliquam tempor euismod tellus. In augue mi, laoreet vitae velit id, maximus mattis eros. Donec quis orci mauris. Vestibulum et tellus id quam tempus aliquet. Pellentesque eleifend erat enim, non lobortis leo pretium in.\n\nPhasellus eu massa ac elit varius sagittis non eu mauris. Aenean egestas metus at viverra volutpat. Quisque ultricies ante ac nulla bibendum faucibus. Donec ultricies ligula sem, nec ornare neque tincidunt a. Pellentesque tempor ex rhoncus, sagittis nisi sed, consectetur ex. Nullam eu viverra nisi. Nulla iaculis, ex quis dignissim dignissim, nulla dui fringilla nisl, at lobortis arcu velit at arcu. Morbi rhoncus imperdiet efficitur.\n\nQuisque pharetra felis nec nibh vulputate, quis efficitur turpis euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt risus dui, vitae porta leo egestas vitae. Duis venenatis ornare bibendum. Etiam pellentesque ipsum sed arcu convallis lacinia. Vestibulum interdum convallis enim ut pharetra. Integer dui est, pulvinar a turpis fringilla, cursus cursus velit. Vestibulum pulvinar odio sit amet urna tincidunt porta. Integer id feugiat diam. Integer venenatis diam tempus lectus volutpat, eget molestie purus rutrum. Pellentesque a scelerisque leo, at hendrerit est. Phasellus tempor vitae leo in congue. Aliquam at justo eget leo interdum convallis sed id turpis.\n\nPhasellus a odio id felis imperdiet tincidunt at id leo. Nulla eu commodo dolor, quis elementum elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus sagittis orci, sed convallis nisl lacinia varius. Quisque nec arcu neque. Sed mauris libero, facilisis at posuere id, hendrerit id nisl. Proin lobortis condimentum lectus in dapibus. Phasellus suscipit, odio a euismod lacinia, orci dui molestie mi, sit amet euismod lorem ligula gravida mauris. Donec pellentesque lacus in felis malesuada viverra vitae ac erat. Sed ac est eleifend, porta tellus vel, varius nisl. Curabitur lacinia urna nec sapien dictum bibendum et et mi. Aenean sit amet aliquet sapien. "
+        "instructions": "Mąką zmieszać wraz z ksylitolem, masłem i cynamonem.  Uformować spód od ciasta, wraz z bokami i włożyć na 15 minut do piekarika (150C).\nW misie miksera umieścić pozostałe składniki. Zmiksować do połączenia lub wymieszać rózgą kuchenną; nie miksować zbyt długo, by niepotrzebnie nie napowietrzać masy serowej. \n\nMasę serową przelać na  kruchy spód i piec w temperaturze 160ºC w kapieli wodnej* przez około 50  – 55 minut. Cała powierzchnia sernika powinna być wypieczona i ścięta przy dotyku patyczkiem. W razie konieczności lekko wydłużyć czas pieczenia. "
       },
       {
-        "name": "Koktajl Malinowy",
-        "portions": 2,
+        "name": "Lasagne z  Cukinią",
+        "portions": "4",
         "ingredients": [
           {
-            "name": "maliny mrożone",
+            "name": "MAKARON LASAGNE",
             "quantity": 250,
-            "unit": "gram"
+            "unit": "gram",
+            "modifyAmount": 0
           },
           {
-            "name": "jogurt naturalny",
-            "quantity": 125,
-            "unit": "ml"
+            "name": "SZPINAK",
+            "quantity": 200,
+            "unit": "gram",
+            "modifyAmount": 0
           },
           {
-            "name": "ksylitol",
-            "quantity": 15,
-            "unit": "gram"
+            "name": "CUKINIA",
+            "quantity": 1,
+            "unit": "szt.",
+            "modifyAmount": 0
           },
           {
-            "name": "mleko",
-            "quantity": 500,
-            "unit": "ml"
+            "name": "OLIWA",
+            "quantity": 50,
+            "unit": "ml",
+            "modifyAmount": 0
           },
           {
-            "name": "BANAN",
+            "name": "CZOSNEK",
+            "quantity": 25,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "TYMIANEK",
+            "quantity": 5,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "SER GRANA PADANO",
+            "quantity": 100,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "RICOTTA",
+            "quantity": 250,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "JAJKA",
             "quantity": 2,
             "unit": "szt.",
             "modifyAmount": 0
+          },
+          {
+            "name": "MOZARELLA",
+            "quantity": 150,
+            "unit": "gram",
+            "modifyAmount": 0
           }
         ],
-        "instructions": "Wszystkie składniki umieścić w kielichu blendera i zmiksować na gładki koktajl."
+        "instructions": "Nadzienie: cukinię zetrzeć na tarce o większych oczkach. Szpinak umyć i poszatkować. Na patelni na łyżce oliwy podsmażyć starty czosnek, dodać cukinię, tymianek i podsmażać przez ok. 3 - 4 minuty, dodać szpinak i mieszając smażyć przez pół minuty aż szpinak zwiędnie.\n\nOdstawić z ognia, przełożyć do miski, przestudzić. Dodać tartą mozarellę, ricottę oraz jajko i wymieszać, doprawić delikatnie solą (uwaga na ilość, bo ser jest już słony) oraz świeżo zmielonym pieprzem.\n\nSos pomidorowy: w garnku na oliwie zeszklić pokrojoną w kosteczkę cebulę, dodać starty czosnek i jeszcze chwilę podsmażać. Dodać oregano, koper włoski jeśli używamy, cukier i wlać sos pomidorowy, doprawić solą, pieprzem, cukrem, zagotować. Gotować przez 5 minut, na koniec można zblendować.\n\nSuszone płaty lasagne włożyć na ok. 2 minuty do wrzątku, aby zmiękły, co umożliwi ich zawijanie w roladki. Świeże płaty lasagne są miękkie i nie trzeba ich namaczać. Płaty rozłożyć na blacie, posmarować nadzieniem, zawinąć w roladki.\n\nPiekarnik nagrzać do 180 stopni C. Do naczynia żaroodpornego wlać połowę sosu, ułożyć roladki łączeniem do dołu, polać resztą sosu. Posypać tartą mozzarellą, przykryć (pokrywą lub folią aluminiową) i zapiekać przez 45 minut pod przykryciem.\n"
       }
     ],
     "fridge": [
       {
-        "name": "płatki owsiane",
-        "quantity": 1000,
-        "unit": "gram",
-        "modifyAmount": 0
-      },
-      {
-        "name": "masło orzechowe",
-        "quantity": 100,
-        "unit": "gram",
-        "modifyAmount": "100"
-      },
-      {
-        "name": "ksylitol",
-        "quantity": 300,
-        "unit": "gram",
-        "modifyAmount": 0
-      },
-      {
-        "name": "mleko",
-        "quantity": 2000,
-        "unit": "ml",
-        "modifyAmount": 0
-      },
-      {
-        "name": "maliny mrożone",
-        "quantity": 300,
-        "unit": "gram",
-        "modifyAmount": 0
-      },
-      {
-        "name": "jogurt naturalny",
-        "quantity": 500,
-        "unit": "ml",
+        "name": "CUKINIA",
+        "quantity": 2,
+        "unit": "szt.",
         "modifyAmount": 0
       },
       {
         "name": "CEBULA",
-        "quantity": 4,
+        "quantity": 2,
         "unit": "szt.",
+        "modifyAmount": 0
+      },
+      {
+        "name": "BANAN",
+        "quantity": 3,
+        "unit": "szt.",
+        "modifyAmount": 0
+      },
+      {
+        "name": "JAJKA",
+        "quantity": 12,
+        "unit": "szt.",
+        "modifyAmount": 0
+      },
+      {
+        "name": "MLEKO",
+        "quantity": 1500,
+        "unit": "ml",
+        "modifyAmount": 0
+      },
+      {
+        "name": "MĄKA GRAHAM",
+        "quantity": 1000,
+        "unit": "gram",
         "modifyAmount": 0
       }
     ]

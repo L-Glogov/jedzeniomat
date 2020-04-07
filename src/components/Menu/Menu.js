@@ -248,7 +248,7 @@ const Menu = ( props ) => {
   return (
     <main className={styles.mainCont}>  
       <div className={styles.editCont}>
-        <h2>Wybrany Dzień</h2>
+        <h2>Skomponuj Menu</h2>
         <div className={styles.dateNum}>
           <div className={styles.date}>
             <label>Data rozpoczęcia:</label>
@@ -290,7 +290,9 @@ const Menu = ( props ) => {
           <button onClick={props.addRec}>Dodaj</button>
         </div>
         <div className={styles.chooseDayBox}>
-          <button onClick={props.nextDay}>Kolejny dzień</button>
+          <button 
+          onClick={props.nextDay}
+          disabled={props.internals.currentDay >= props.menu.numDays}>Kolejny dzień</button>
           <div className={styles.chooseDay}>
             <label htmlFor="menuSelectDay">Wybierz dzień:</label>
             <select onChange={props.goToDay} name="menuSelectDay" value={props.internals.currentDay} id="menuSelectDay">
@@ -315,9 +317,8 @@ const Menu = ( props ) => {
         <ul className={styles.fullShopList}>
           {fullShoppingList.length === 0 ? <li>Nic nie potrzeba.</li> : fullShoppingList}
         </ul>
-        <div>
-        <h3>DOCX browser Word document generation</h3>
-        <button type="button" onClick={generateDOCX}>Click to generate document</button>
+        <div className={styles.genDoc}>
+          <button type="button" onClick={generateDOCX}>Pobierz listę zakupów</button>
         </div>
       </div>     
     </main>
