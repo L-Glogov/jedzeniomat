@@ -22,8 +22,8 @@ In its current build the app makes use of the json-server and Axios packages and
 
 ## TODO for future releases
 
-*Implement additional units and unit conversion
-*Add an Enlish language pack
-*Implement filter searches for recipes and ssupplies.
-*Implement an autocomplete feature for the inputs
+Implement additional units and unit conversion.
+Add an Enlish language pack.
+Implement filter searches for recipes and ssupplies.
+Implement an autocomplete feature for the inputs
 
