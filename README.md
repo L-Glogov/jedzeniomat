@@ -1,68 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ver 1.0 Development build
 
-## Available Scripts
+## Overview 
 
-In the project directory, you can run:
+This is a simple React App for managing your daily shopping list. Unfortunately, so far the App in only available in Polish. It is composed of three main interfaces:
 
-### `npm start`
+### Fridge
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Here you can add, edit and remove ingriedients from a virtual fridge/pantry which should represent your actual household supplies. It is important to save the data to the database by clicking the button if you wish for it to be avaialable in a future session.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Recipes
 
-### `npm test`
+Here you can add, edit and remove your recipes. Once added a recipe is automatically saved to the database via a post request.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Menu
 
-### `npm run build`
+The part of the App which utilizes data from the other two components. Here you can create a dynamic menu for a given date-span. A full shopping list of the required items, as well as a supplementary list of the missing items (when taking into account the state of our fridge) is rendered dynamically and is also avaialble for download at any moment as a docx file.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Database
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+In its current build the app makes use of the json-server and Axios packages and makes get and post requests to a local db.json file via localhost. It can be easily setup for another server.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## TODO for future releases
 
-### `npm run eject`
+*Implement additional units and unit conversion
+*Add an Enlish language pack
+*Implement filter searches for recipes and ssupplies.
+*Implement an autocomplete feature for the inputs
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
