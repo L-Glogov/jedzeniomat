@@ -2,7 +2,7 @@ ver 1.0 Development build
 
 ## Overview 
 
-This is a simple React App for managing your daily shopping list. Unfortunately, so far the App in only available in Polish. It is composed of three main interfaces:
+This is a simple React App for managing your daily shopping list. Unfortunately, so far the App in only available in Polish. As of ver 1.0 the app is not compatible with mobile phones and works best a the 1920x1080 resolution. It is composed of three main interfaces:
 
 ### Fridge
 
