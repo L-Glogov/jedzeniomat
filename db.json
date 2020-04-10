@@ -122,24 +122,153 @@
           }
         ],
         "instructions": "Nadzienie: cukinię zetrzeć na tarce o większych oczkach. Szpinak umyć i poszatkować. Na patelni na łyżce oliwy podsmażyć starty czosnek, dodać cukinię, tymianek i podsmażać przez ok. 3 - 4 minuty, dodać szpinak i mieszając smażyć przez pół minuty aż szpinak zwiędnie.\n\nOdstawić z ognia, przełożyć do miski, przestudzić. Dodać tartą mozarellę, ricottę oraz jajko i wymieszać, doprawić delikatnie solą (uwaga na ilość, bo ser jest już słony) oraz świeżo zmielonym pieprzem.\n\nSos pomidorowy: w garnku na oliwie zeszklić pokrojoną w kosteczkę cebulę, dodać starty czosnek i jeszcze chwilę podsmażać. Dodać oregano, koper włoski jeśli używamy, cukier i wlać sos pomidorowy, doprawić solą, pieprzem, cukrem, zagotować. Gotować przez 5 minut, na koniec można zblendować.\n\nSuszone płaty lasagne włożyć na ok. 2 minuty do wrzątku, aby zmiękły, co umożliwi ich zawijanie w roladki. Świeże płaty lasagne są miękkie i nie trzeba ich namaczać. Płaty rozłożyć na blacie, posmarować nadzieniem, zawinąć w roladki.\n\nPiekarnik nagrzać do 180 stopni C. Do naczynia żaroodpornego wlać połowę sosu, ułożyć roladki łączeniem do dołu, polać resztą sosu. Posypać tartą mozzarellą, przykryć (pokrywą lub folią aluminiową) i zapiekać przez 45 minut pod przykryciem.\n"
+      },
+      {
+        "name": "Smalec z Fasoli",
+        "portions": "2",
+        "ingredients": [
+          {
+            "name": "FASOLA BIAŁA",
+            "quantity": 250,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "CEBULA",
+            "quantity": 1,
+            "unit": "szt.",
+            "modifyAmount": 0
+          },
+          {
+            "name": "OLEJ",
+            "quantity": 50,
+            "unit": "ml",
+            "modifyAmount": 0
+          }
+        ],
+        "instructions": "Fasolę odcedzić zachowując kilka łyżek zalewy. Cebulę obrać i pokroić w kosteczkę, wrzucić na patelnię z olejem i co chwilę mieszając smażyć przez ok. 10 minut, aż cebula zeszkli się, zmięknie, a na koniec lekko się zrumieni. W międzyczasie cebulę posolić i doprawić pieprzem.\nDodać do fasoli i całość rozgnieść praską do ziemniaków lub widelcem (nie używamy blendera aby nie zrobiła się \"ciapa\"). W razie potrzeby można dodać trochę zachowanej zalewy gdyby pasta wyszła za sucha."
+      },
+      {
+        "name": "Placek z Cukinii",
+        "portions": "2",
+        "ingredients": [
+          {
+            "name": "CUKINIA",
+            "quantity": 2,
+            "unit": "szt.",
+            "modifyAmount": 0
+          },
+          {
+            "name": "CEBULA",
+            "quantity": 1,
+            "unit": "szt.",
+            "modifyAmount": 0
+          },
+          {
+            "name": "ZĄBKI CZOSNKU",
+            "quantity": 2,
+            "unit": "szt.",
+            "modifyAmount": 0
+          },
+          {
+            "name": "MĄKA GRAHAM",
+            "quantity": 50,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "JAJKA",
+            "quantity": 3,
+            "unit": "szt.",
+            "modifyAmount": 0
+          },
+          {
+            "name": "SER ŻÓŁTY",
+            "quantity": 100,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "PARMEZAN",
+            "quantity": 50,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "SZYCZYPIOREK",
+            "quantity": 1,
+            "unit": "szt.",
+            "modifyAmount": 0
+          },
+          {
+            "name": "OLIWA",
+            "quantity": 20,
+            "unit": "ml",
+            "modifyAmount": 0
+          },
+          {
+            "name": "GAŁKA MUSZKATOŁOWA",
+            "quantity": 5,
+            "unit": "gram",
+            "modifyAmount": 0
+          }
+        ],
+        "instructions": "Cukinie umyć, odkroić końce. Zetrzeć na tarce o dużych oczkach razem z obraną cebulą. Doprawić solą, wymieszać i zostawić na sitku na ok. 15 minut, następnie dokładnie odcisnąć z nadmiaru soku.\nWłożyć do większej miski. Piekarnik nagrzać do 190 stopni C.\nDo miski z cukinią i cebulą dodać starte ząbki czosnku, mąka, jajka, tarty ser, parmezan, posiekany szczypiorek i oliwę. Doprawić solą, pieprzem oraz gałką muszkatołową, wymieszać.\nWyłożyć do niedużej formy (np. 18 x 23 cm) wyścielonej papierem do pieczenia i piec przez ok. 30 minut."
+      },
+      {
+        "name": "Jajka z Cukinią",
+        "portions": "2",
+        "ingredients": [
+          {
+            "name": "CUKINIA",
+            "quantity": 1,
+            "unit": "szt.",
+            "modifyAmount": 0
+          },
+          {
+            "name": "RUKOLA",
+            "quantity": 50,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "JAJKA",
+            "quantity": 6,
+            "unit": "szt.",
+            "modifyAmount": 0
+          },
+          {
+            "name": "ZĄBEK CZOSNKU",
+            "quantity": 2,
+            "unit": "szt.",
+            "modifyAmount": 0
+          },
+          {
+            "name": "PARMEZAN",
+            "quantity": 60,
+            "unit": "gram",
+            "modifyAmount": 0
+          },
+          {
+            "name": "CYTRYNA",
+            "quantity": 1,
+            "unit": "szt.",
+            "modifyAmount": 0
+          },
+          {
+            "name": "OLIWA",
+            "quantity": 50,
+            "unit": "ml",
+            "modifyAmount": 0
+          }
+        ],
+        "instructions": "Jajka ugotować na twardo , obrać, przekroić na połówki i delikatnie wyjąć z nich żółtka. Cukinię obrać, drobno pokroić na małe kosteczki i poddusić z posiekanym czosnkiem na łyżeczce oliwy z oliwek. Odstawić do ostudzenia.\n\nRukole opłukać i bardzo drobno pokroić. Uduszona cukinię połączyć z rukolą, żółtkami ,parmezanem i sosem vinigret, solą i pierzem. Polówki jajek napełnić przygotowana masą."
       }
     ],
     "fridge": [
       {
-        "name": "CUKINIA",
-        "quantity": 2,
-        "unit": "szt.",
-        "modifyAmount": 0
-      },
-      {
         "name": "CEBULA",
         "quantity": 2,
-        "unit": "szt.",
-        "modifyAmount": 0
-      },
-      {
-        "name": "BANAN",
-        "quantity": 3,
         "unit": "szt.",
         "modifyAmount": 0
       },
@@ -151,14 +280,26 @@
       },
       {
         "name": "MLEKO",
-        "quantity": 1500,
+        "quantity": 800,
         "unit": "ml",
-        "modifyAmount": 0
+        "modifyAmount": "1000"
       },
       {
         "name": "MĄKA GRAHAM",
         "quantity": 1000,
         "unit": "gram",
+        "modifyAmount": 0
+      },
+      {
+        "name": "CUKINIA",
+        "quantity": 43,
+        "unit": "szt.",
+        "modifyAmount": 0
+      },
+      {
+        "name": "BANAN",
+        "quantity": 2,
+        "unit": "szt.",
         "modifyAmount": 0
       }
     ]
